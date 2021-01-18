@@ -1,0 +1,13 @@
+.label {
+  display: flex;
+  flex-direction: column;
+
+  .input {
+    margin-top: 5px;
+    padding: 10px 17px;
+    border: 1px solid black;
+    border-radius: 15px;
+    font-size: 1rem;
+    user-select: none;
+  }
+}

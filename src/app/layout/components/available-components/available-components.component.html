@@ -1,0 +1,13 @@
+<div
+  id="availableComponents"
+  [cdkDropListData]="componentsList"
+  cdkDropList
+  cdkDropListConnectedTo="selectedComponents"
+  (cdkDropListDropped)="drop($event)"
+>
+  <ul>
+    <li *ngFor="let component of componentsList">
+      <ng-template [cdkPortalOutlet]="component"></ng-template>
+    </li>
+  </ul>
+</div>
