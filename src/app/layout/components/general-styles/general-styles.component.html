@@ -3,13 +3,70 @@
     <mat-expansion-panel-header>
       <mat-panel-title>General styles</mat-panel-title>
     </mat-expansion-panel-header>
+  </mat-expansion-panel>
 
-    <mat-expansion-panel *ngFor="let component of selectedComponents">
-      <mat-expansion-panel-header>
-        <mat-panel-title>Title</mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>Description</p>
-    </mat-expansion-panel>
+  <mat-expansion-panel *ngFor="let component of selectedComponents">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{component.label}}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <div>
 
+      <div class="form-group">
+        <label>
+          Placeholder text:
+          <input type="text">
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Width
+          <input type="text">
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Height
+          <input type="text">
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Required
+          <input type="checkbox">
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Border Style
+          <input type="text">
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Font Size
+          <input type="number">
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Input Font Weight
+          <input type="text">
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Select Color Input
+          <input type="color">
+        </label>
+      </div>
+
+    </div>
   </mat-expansion-panel>
 </div>
