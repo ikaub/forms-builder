@@ -5,11 +5,15 @@
     </mat-expansion-panel-header>
   </mat-expansion-panel>
 
-  <mat-expansion-panel [expanded]="chosenComponent === ndx" *ngFor="let component of selectedComponents; index as ndx">
+  <mat-expansion-panel
+    [expanded]="chosenComponent === ndx"
+    *ngFor="let component of selectedComponents; index as ndx"
+  >
     <mat-expansion-panel-header>
       <mat-panel-title>{{component.styles.placeholderText}}</mat-panel-title>
     </mat-expansion-panel-header>
-    <div>
+
+    <form>
 
       <div class="form-group">
         <label>
@@ -67,6 +71,7 @@
         </label>
       </div>
 
-    </div>
+    </form>
+
   </mat-expansion-panel>
 </div>

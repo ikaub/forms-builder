@@ -16,7 +16,7 @@ export interface LabeledComponentPortal {
   styles: Styles;
 }
 
-export interface Styles {
+export interface Styles extends Record<string, string | number | boolean> {
   placeholderText: string;
   width: number;
   height: number;

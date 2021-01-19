@@ -16,12 +16,19 @@ export class GeneralStylesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getSelectedComponents();
+    this.getChosenComponent();
+  }
+
+  getSelectedComponents(): void {
     this.store.pipe(select(selectSelectedComponents)).subscribe(components => {
       this.selectedComponents = components;
     });
+  }
+
+  getChosenComponent(): void {
     this.store.pipe(select(selectChosenComponent)).subscribe(index => {
       this.chosenComponent = index;
     });
   }
-
 }

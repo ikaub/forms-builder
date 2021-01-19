@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ComponentRef, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {ComponentPortal} from '@angular/cdk/portal';
+import {CdkPortalOutletAttachedRef, ComponentPortal} from '@angular/cdk/portal';
 import {chooseComponent, drop} from '../../store/form.actions';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
-import {ComponentInterface, LabeledComponentPortal} from '../../types/layout.types';
+import {LabeledComponentPortal} from '../../types/layout.types';
 import {AppState} from '../../../types/app.types';
 import {selectSelectedComponents} from '../../store/form.selectors';
 
@@ -42,5 +42,13 @@ export class FormBuilderComponent implements OnInit {
 
   chooseComponent(index: number): void {
     this.store.dispatch(chooseComponent({component: index}));
+  }
+
+  injectStyles(portalRef: CdkPortalOutletAttachedRef): void {
+    this.selectedComponents.forEach(({component, styles}) => {
+      Object.keys(styles).forEach(key => {
+        (portalRef as ComponentRef<any>).instance[key] = styles[key];
+      });
+    });
   }
 }

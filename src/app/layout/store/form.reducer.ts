@@ -39,8 +39,8 @@ const initialState: FormState = {
       component: {...TextareaComponent},
       styles: {
         placeholderText: 'Textarea',
-        width: 150,
-        height: 40,
+        width: 400,
+        height: 200,
         fontSize: 14,
         fontWeight: 'normal',
         required: false,
@@ -65,7 +65,7 @@ const initialState: FormState = {
       component: {...CheckboxComponent},
       styles: {
         placeholderText: 'Checkbox',
-        width: 150,
+        width: 40,
         height: 40,
         fontSize: 14,
         fontWeight: 'normal',
