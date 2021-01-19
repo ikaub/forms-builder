@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../types/app.types';
+import {selectChosenComponent, selectSelectedComponents} from '../../store/form.selectors';
 
 @Component({
   selector: 'app-general-styles',
@@ -15,10 +16,10 @@ export class GeneralStylesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(state => state.form.selectedComponents).subscribe(components => {
+    this.store.pipe(select(selectSelectedComponents)).subscribe(components => {
       this.selectedComponents = components;
     });
-    this.store.select(state => state.form.chosenComponent).subscribe(index => {
+    this.store.pipe(select(selectChosenComponent)).subscribe(index => {
       this.chosenComponent = index;
     });
   }

@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ComponentPortal} from '@angular/cdk/portal';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {remove} from '../../store/form.actions';
 import {FormState, LabeledComponentPortal} from '../../types/layout.types';
 import {AppState} from '../../../types/app.types';
+import {selectAvailableComponents} from '../../store/form.selectors';
 
 @Component({
   selector: 'app-available-components',
@@ -19,7 +20,7 @@ export class AvailableComponentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(state => state.form.availableComponents).subscribe(components => {
+    this.store.pipe(select(selectAvailableComponents)).subscribe(components => {
       this.componentsList = components.map(({component, styles}) => ({
         component: new ComponentPortal<any>(component),
         styles,
