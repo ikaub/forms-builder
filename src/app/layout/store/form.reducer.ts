@@ -1,22 +1,11 @@
-import {Action, createReducer, on, props} from '@ngrx/store';
+import {Action, createReducer, on} from '@ngrx/store';
 import {InputComponent} from '../../inputs/components/input/input.component';
 import {ButtonComponent} from '../../inputs/components/button/button.component';
 import {TextareaComponent} from '../../inputs/components/textarea/textarea.component';
 import {SelectComponent} from '../../inputs/components/select/select.component';
 import {CheckboxComponent} from '../../inputs/components/checkbox/checkbox.component';
-import {drop, remove} from './form.actions';
-import {ElementRef} from '@angular/core';
-import {ComponentPortal} from '@angular/cdk/portal';
-
-export interface Component {
-  component: any;
-  label: string;
-}
-
-export interface FormState {
-  availableComponents: Component[];
-  selectedComponents: Component[];
-}
+import {chooseComponent, drop, remove} from './form.actions';
+import {FormState} from '../types/layout.types';
 
 const initialState: FormState = {
   availableComponents: [
@@ -42,6 +31,7 @@ const initialState: FormState = {
     }
   ],
   selectedComponents: [],
+  chosenComponent: null,
 };
 
 const formReducer = createReducer(
@@ -58,6 +48,10 @@ const formReducer = createReducer(
       selectedComponents: newComponents,
     };
   }),
+  on(chooseComponent, (state, {component}) => ({
+    ...state,
+    chosenComponent: component,
+  })),
 );
 
 export const reducer = (state: FormState, action: Action) => formReducer(state, action);

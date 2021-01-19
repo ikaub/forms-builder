@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {FormState} from '../../store/form.reducer';
 import {ComponentPortal} from '@angular/cdk/portal';
-import {drop} from '../../store/form.actions';
+import {chooseComponent, drop} from '../../store/form.actions';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
+import {ComponentInterface, LabeledComponentPortal} from '../../types/layout.types';
+import {AppState} from '../../../types/app.types';
 
 @Component({
   selector: 'app-form-builder',
@@ -12,12 +13,9 @@ import {CdkDragDrop} from '@angular/cdk/drag-drop';
 })
 export class FormBuilderComponent implements OnInit {
 
-  selectedComponents: {
-    component: ComponentPortal<any>,
-    label: string;
-  }[] = [];
+  selectedComponents: LabeledComponentPortal[] = [];
 
-  constructor(private store: Store<{ form: FormState }>) {
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit(): void {
@@ -39,5 +37,9 @@ export class FormBuilderComponent implements OnInit {
       };
       this.store.dispatch(drop(props));
     }
+  }
+
+  chooseComponent(index: number): void {
+    this.store.dispatch(chooseComponent({component: index}));
   }
 }

@@ -1,13 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {FormState} from '../../store/form.reducer';
-import {FlatTreeControl} from '@angular/cdk/tree';
-
-interface ExpandableComponentsTree {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
+import {AppState} from '../../../types/app.types';
 
 @Component({
   selector: 'app-general-styles',
@@ -16,14 +9,17 @@ interface ExpandableComponentsTree {
 })
 export class GeneralStylesComponent implements OnInit {
   selectedComponents!: any[];
+  chosenComponent!: number | null;
 
-  constructor(private store: Store<{ form: FormState }>) {
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit(): void {
     this.store.select(state => state.form.selectedComponents).subscribe(components => {
       this.selectedComponents = components;
-      console.log(this.selectedComponents);
+    });
+    this.store.select(state => state.form.chosenComponent).subscribe(index => {
+      this.chosenComponent = index;
     });
   }
 

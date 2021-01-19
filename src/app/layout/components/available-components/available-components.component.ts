@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ComponentPortal} from '@angular/cdk/portal';
-import {InputComponent} from '../../../inputs/components/input/input.component';
-import {GeneralStylesComponent} from '../general-styles/general-styles.component';
 import {Store} from '@ngrx/store';
-import {FormState} from '../../store/form.reducer';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {remove} from '../../store/form.actions';
+import {FormState, LabeledComponentPortal} from '../../types/layout.types';
+import {AppState} from '../../../types/app.types';
 
 @Component({
   selector: 'app-available-components',
@@ -14,12 +13,9 @@ import {remove} from '../../store/form.actions';
 })
 export class AvailableComponentsComponent implements OnInit {
 
-  componentsList: {
-    component: ComponentPortal<any> | null;
-    label: string;
-  }[] = [];
+  componentsList: LabeledComponentPortal[] = [];
 
-  constructor(private store: Store<{ form: FormState }>) {
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit(): void {

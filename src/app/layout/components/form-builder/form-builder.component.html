@@ -7,7 +7,7 @@
   [cdkDropListData]="selectedComponents"
 >
   <ul>
-    <li *ngFor="let component of selectedComponents">
+    <li (click)="chooseComponent(ndx)" *ngFor="let component of selectedComponents; index as ndx">
       <ng-template [cdkPortalOutlet]="component.component"></ng-template>
     </li>
   </ul>
