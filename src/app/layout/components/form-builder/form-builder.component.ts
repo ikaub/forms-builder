@@ -12,20 +12,32 @@ import {CdkDragDrop} from '@angular/cdk/drag-drop';
 })
 export class FormBuilderComponent implements OnInit {
 
-  selectedComponents: ComponentPortal<any>[] = [];
+  selectedComponents: {
+    component: ComponentPortal<any>,
+    label: string;
+  }[] = [];
 
   constructor(private store: Store<{ form: FormState }>) {
   }
 
   ngOnInit(): void {
     this.store.select(state => state.form.selectedComponents).subscribe(components => {
-      this.selectedComponents = components.map(component => new ComponentPortal(component));
+      this.selectedComponents = components.map(({component, label}) => ({
+        component: new ComponentPortal<any>(component),
+        label,
+      }));
     });
   }
 
   drop(event: CdkDragDrop<any>): void {
     if (event.previousContainer.id !== event.container.id) {
-      this.store.dispatch(drop({component: event.previousContainer.data[event.previousIndex].component}));
+      const props = {
+        component: {
+          component: event.previousContainer.data[event.previousIndex].component.component,
+          label: event.previousContainer.data[event.previousIndex].label
+        }
+      };
+      this.store.dispatch(drop(props));
     }
   }
 }

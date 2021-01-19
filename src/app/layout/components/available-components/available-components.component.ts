@@ -14,14 +14,20 @@ import {remove} from '../../store/form.actions';
 })
 export class AvailableComponentsComponent implements OnInit {
 
-  componentsList: ComponentPortal<any>[] = [];
+  componentsList: {
+    component: ComponentPortal<any> | null;
+    label: string;
+  }[] = [];
 
   constructor(private store: Store<{ form: FormState }>) {
   }
 
   ngOnInit(): void {
     this.store.select(state => state.form.availableComponents).subscribe(components => {
-      this.componentsList = components.map(component => new ComponentPortal(component));
+      this.componentsList = components.map(({component, label}) => ({
+        component: new ComponentPortal<any>(component),
+        label,
+      }));
     });
   }
 

@@ -8,25 +8,45 @@ import {drop, remove} from './form.actions';
 import {ElementRef} from '@angular/core';
 import {ComponentPortal} from '@angular/cdk/portal';
 
+export interface Component {
+  component: any;
+  label: string;
+}
+
 export interface FormState {
-  availableComponents: any[];
-  selectedComponents: any[];
+  availableComponents: Component[];
+  selectedComponents: Component[];
 }
 
 const initialState: FormState = {
   availableComponents: [
-    {...InputComponent},
-    {...ButtonComponent},
-    {...TextareaComponent},
-    {...SelectComponent},
-    {...CheckboxComponent}
+    {
+      component: {...InputComponent},
+      label: 'Text field'
+    },
+    {
+      component: {...ButtonComponent},
+      label: 'Button'
+    },
+    {
+      component: {...TextareaComponent},
+      label: 'Textarea'
+    },
+    {
+      component: {...SelectComponent},
+      label: 'Select'
+    },
+    {
+      component: {...CheckboxComponent},
+      label: 'Checkbox'
+    }
   ],
   selectedComponents: [],
 };
 
 const formReducer = createReducer(
   initialState,
-  on(drop, (state, {component}) => ({
+  on(drop, (state: FormState, {component}) => ({
     ...state,
     selectedComponents: [...state.selectedComponents, component]
   })),
