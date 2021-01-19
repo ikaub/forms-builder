@@ -11,23 +11,68 @@ const initialState: FormState = {
   availableComponents: [
     {
       component: {...InputComponent},
-      label: 'Text field'
+      styles: {
+        placeholderText: 'Text field',
+        width: 300,
+        height: 100,
+        fontSize: 14,
+        fontWeight: 'normal',
+        required: false,
+        color: '#000',
+        borderStyle: '1px solid #000',
+      }
     },
     {
       component: {...ButtonComponent},
-      label: 'Button'
+      styles: {
+        placeholderText: 'Button',
+        width: 150,
+        height: 40,
+        fontSize: 14,
+        fontWeight: 'normal',
+        required: false,
+        color: '#000',
+        borderStyle: '1px solid #000',
+      }
     },
     {
       component: {...TextareaComponent},
-      label: 'Textarea'
+      styles: {
+        placeholderText: 'Textarea',
+        width: 150,
+        height: 40,
+        fontSize: 14,
+        fontWeight: 'normal',
+        required: false,
+        color: '#000',
+        borderStyle: '1px solid #000',
+      }
     },
     {
       component: {...SelectComponent},
-      label: 'Select'
+      styles: {
+        placeholderText: 'Select',
+        width: 150,
+        height: 40,
+        fontSize: 14,
+        fontWeight: 'normal',
+        required: false,
+        color: '#000',
+        borderStyle: '1px solid #000',
+      }
     },
     {
       component: {...CheckboxComponent},
-      label: 'Checkbox'
+      styles: {
+        placeholderText: 'Checkbox',
+        width: 150,
+        height: 40,
+        fontSize: 14,
+        fontWeight: 'normal',
+        required: false,
+        color: '#000',
+        borderStyle: '1px solid #000',
+      }
     }
   ],
   selectedComponents: [],

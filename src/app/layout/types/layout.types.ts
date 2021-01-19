@@ -1,20 +1,8 @@
 import {ComponentPortal} from '@angular/cdk/portal';
-import {InputComponent} from '../../inputs/components/input/input.component';
-import {CheckboxComponent} from '../../inputs/components/checkbox/checkbox.component';
-import {ButtonComponent} from '../../inputs/components/button/button.component';
-import {TextareaComponent} from '../../inputs/components/textarea/textarea.component';
-import {SelectComponent} from '../../inputs/components/select/select.component';
-
-export type AvailableComponents =
-  | InputComponent
-  | CheckboxComponent
-  | ButtonComponent
-  | TextareaComponent
-  | SelectComponent;
 
 export interface ComponentInterface {
   component: any;
-  label: string;
+  styles: Styles;
 }
 
 export interface FormState {
@@ -24,8 +12,8 @@ export interface FormState {
 }
 
 export interface LabeledComponentPortal {
-  component: ComponentPortal<AvailableComponents> | null;
-  label: string;
+  component: ComponentPortal<any> | null;
+  styles: Styles;
 }
 
 export interface Styles {

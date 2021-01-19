@@ -20,9 +20,9 @@ export class FormBuilderComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(state => state.form.selectedComponents).subscribe(components => {
-      this.selectedComponents = components.map(({component, label}) => ({
+      this.selectedComponents = components.map(({component, styles}) => ({
         component: new ComponentPortal<any>(component),
-        label,
+        styles,
       }));
     });
   }
@@ -32,7 +32,7 @@ export class FormBuilderComponent implements OnInit {
       const props = {
         component: {
           component: event.previousContainer.data[event.previousIndex].component.component,
-          label: event.previousContainer.data[event.previousIndex].label
+          styles: event.previousContainer.data[event.previousIndex].styles
         }
       };
       this.store.dispatch(drop(props));

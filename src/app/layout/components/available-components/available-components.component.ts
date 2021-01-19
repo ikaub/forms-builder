@@ -20,9 +20,9 @@ export class AvailableComponentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(state => state.form.availableComponents).subscribe(components => {
-      this.componentsList = components.map(({component, label}) => ({
+      this.componentsList = components.map(({component, styles}) => ({
         component: new ComponentPortal<any>(component),
-        label,
+        styles,
       }));
     });
   }
