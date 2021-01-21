@@ -19,5 +19,5 @@ export const chooseComponent = createAction(
 
 export const changeStyles = createAction(
   CHANGE_STYLES,
-  props<{styles: Styles}>(),
+  props<{ styles: Styles, componentIndex: number }>(),
 );

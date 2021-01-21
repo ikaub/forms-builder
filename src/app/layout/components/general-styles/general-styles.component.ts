@@ -42,6 +42,8 @@ export class GeneralStylesComponent implements OnInit {
   }
 
   changeComponent(): void {
-    this.store.dispatch(changeStyles({styles: this.styles}));
+    console.log(this.chosenComponent);
+    console.log(this.styles);
+    this.store.dispatch(changeStyles({styles: this.styles, componentIndex: this.chosenComponent}));
   }
 }
