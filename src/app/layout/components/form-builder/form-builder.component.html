@@ -10,13 +10,14 @@
   'background-color': generalStyles.color
   }"
 >
-  <ul>
-    <li
-      [ngStyle]="{'margin': generalStyles.margin + ' 0'}"
-      (click)="chooseComponent(ndx)"
-      *ngFor="let component of selectedComponents; index as ndx"
-    >
-      <ng-template [cdkPortalOutlet]="component.component"></ng-template>
-    </li>
-  </ul>
+  <div
+    cdkDrag
+    [ngStyle]="{'margin': generalStyles.margin + '  0'}"
+    (click)="chooseComponent(ndx)"
+    *ngFor="let component of selectedComponents; index as ndx"
+  >
+    <ng-template
+      [cdkPortalOutlet]="component.component"
+    ></ng-template>
+  </div>
 </div>

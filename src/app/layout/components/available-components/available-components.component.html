@@ -5,9 +5,7 @@
   cdkDropListConnectedTo="selectedComponents"
   (cdkDropListDropped)="drop($event)"
 >
-  <ul>
-    <li *ngFor="let component of componentsList">
-      <ng-template [cdkPortalOutlet]="component.component"></ng-template>
-    </li>
-  </ul>
+  <div class="draggable-component" cdkDrag *ngFor="let component of componentsList">
+    <ng-template [cdkPortalOutlet]="component.component"></ng-template>
+  </div>
 </div>

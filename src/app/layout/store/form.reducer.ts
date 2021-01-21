@@ -4,7 +4,7 @@ import {ButtonComponent} from '../../inputs/components/button/button.component';
 import {TextareaComponent} from '../../inputs/components/textarea/textarea.component';
 import {SelectComponent} from '../../inputs/components/select/select.component';
 import {CheckboxComponent} from '../../inputs/components/checkbox/checkbox.component';
-import {changeGeneralStyles, changeStyles, chooseComponent, drop, remove} from './form.actions';
+import {changeGeneralStyles, changeStyles, chooseComponent, drop, remove, swapComponents} from './form.actions';
 import {ComponentInterface, FormState} from '../types/layout.types';
 
 const initialState: FormState = {
@@ -95,6 +95,14 @@ const formReducer = createReducer(
   on(remove, (state, {componentIndex}) => {
     const newComponents = [...state.selectedComponents];
     newComponents.splice(componentIndex, 1);
+    return {
+      ...state,
+      selectedComponents: newComponents,
+    };
+  }),
+  on(swapComponents, (state, {previousIndex, currentIndex}) => {
+    const newComponents = [...state.selectedComponents];
+    [newComponents[previousIndex], newComponents[currentIndex]] = [newComponents[currentIndex], newComponents[previousIndex]];
     return {
       ...state,
       selectedComponents: newComponents,

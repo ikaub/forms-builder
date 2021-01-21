@@ -1,8 +1,8 @@
 import {Component, Injector, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {ComponentPortal} from '@angular/cdk/portal';
-import {chooseComponent, drop} from '../../store/form.actions';
-import {CdkDragDrop} from '@angular/cdk/drag-drop';
+import {chooseComponent, drop, swapComponents} from '../../store/form.actions';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {GeneralFormStyles, StyledComponentPortal, STYLES_DATA} from '../../types/layout.types';
 import {AppState} from '../../../types/app.types';
 import {selectChosenComponent, selectGeneralStyles, selectSelectedComponents} from '../../store/form.selectors';
@@ -36,6 +36,8 @@ export class FormBuilderComponent implements OnInit {
         }
       };
       this.store.dispatch(drop(props));
+    } else {
+      this.store.dispatch(swapComponents({previousIndex: event.previousIndex, currentIndex: event.currentIndex}));
     }
   }
 
