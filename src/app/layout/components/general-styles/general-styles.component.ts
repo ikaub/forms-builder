@@ -2,8 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../types/app.types';
 import {selectChosenComponent, selectGeneralStyles, selectSelectedComponents} from '../../store/form.selectors';
-import {GeneralFormStyles, StyledComponentPortal, Styles} from '../../types/layout.types';
+import {ComponentInterface, GeneralFormStyles, StyledComponentPortal, Styles} from '../../types/layout.types';
 import {changeGeneralStyles, changeStyles} from '../../store/form.actions';
+import {PortalsService} from '../../services/portals.service';
+import {Observable} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-general-styles',
@@ -11,31 +14,19 @@ import {changeGeneralStyles, changeStyles} from '../../store/form.actions';
   styleUrls: ['./general-styles.component.scss']
 })
 export class GeneralStylesComponent implements OnInit {
-  selectedComponents!: StyledComponentPortal[];
+  selectedComponents$!: Observable<ComponentInterface[]>;
   generalStyles!: GeneralFormStyles;
-  chosenComponent!: number;
-  styles!: Styles;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private portalsService: PortalsService) {
   }
 
   ngOnInit(): void {
     this.getSelectedComponents();
-    this.getChosenComponent();
     this.getGeneralStyles();
   }
 
   getSelectedComponents(): void {
-    this.store.pipe(select(selectSelectedComponents)).subscribe(components => {
-      this.selectedComponents = components;
-    });
-  }
-
-  getChosenComponent(): void {
-    this.store.pipe(select(selectChosenComponent)).subscribe(index => {
-      this.chosenComponent = index;
-      this.styles = this.selectedComponents[this.chosenComponent]?.styles;
-    });
+    this.selectedComponents$ = this.portalsService.getSelectedComponents();
   }
 
   getGeneralStyles(): void {
@@ -44,18 +35,9 @@ export class GeneralStylesComponent implements OnInit {
     });
   }
 
-  changeStyles(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.styles = {...this.styles, [target.name]: target.value};
-  }
-
   changeGeneralStyles(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.generalStyles = {...this.generalStyles, [target.name]: target.value};
-  }
-
-  changeComponent(): void {
-    this.store.dispatch(changeStyles({styles: this.styles, componentIndex: this.chosenComponent}));
   }
 
   changeForm(): void {

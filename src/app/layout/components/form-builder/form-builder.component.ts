@@ -1,11 +1,12 @@
-import {Component, Injector, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {ComponentPortal} from '@angular/cdk/portal';
 import {chooseComponent, drop, swapComponents} from '../../store/form.actions';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {GeneralFormStyles, StyledComponentPortal, STYLES_DATA} from '../../types/layout.types';
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
+import {GeneralFormStyles, StyledComponentPortal} from '../../types/layout.types';
 import {AppState} from '../../../types/app.types';
-import {selectChosenComponent, selectGeneralStyles, selectSelectedComponents} from '../../store/form.selectors';
+import {selectChosenComponent, selectGeneralStyles} from '../../store/form.selectors';
+import {PortalsService} from '../../services/portals.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-form-builder',
@@ -14,16 +15,14 @@ import {selectChosenComponent, selectGeneralStyles, selectSelectedComponents} fr
 })
 export class FormBuilderComponent implements OnInit {
 
-  selectedComponents!: StyledComponentPortal[];
+  selectedComponents$!: Observable<StyledComponentPortal[]>;
   generalStyles!: GeneralFormStyles;
-  chosenComponent!: number;
 
-  constructor(private store: Store<AppState>, private injector: Injector) {
+  constructor(private store: Store<AppState>, private portalsService: PortalsService) {
   }
 
   ngOnInit(): void {
     this.getSelectedComponents();
-    this.getChosenComponent();
     this.getGeneralStyles();
   }
 
@@ -46,33 +45,13 @@ export class FormBuilderComponent implements OnInit {
     this.store.dispatch(chooseComponent({componentIndex: index}));
   }
 
+  getSelectedComponents(): void {
+    this.selectedComponents$ = this.portalsService.getSelectedComponentsPortals();
+  }
+
   getGeneralStyles(): void {
     this.store.pipe(select(selectGeneralStyles)).subscribe(generalStyles => {
       this.generalStyles = generalStyles;
-    });
-  }
-
-  getChosenComponent(): void {
-    this.store.pipe(select(selectChosenComponent)).subscribe(index => {
-      this.chosenComponent = index;
-    });
-  }
-
-  getSelectedComponents(): void {
-    this.store.pipe(select(selectSelectedComponents)).subscribe(components => {
-      this.selectedComponents = components.map(({component, styles}) => ({
-        component: new ComponentPortal<any>(
-          component,
-          null,
-          Injector.create({
-            parent: this.injector,
-            providers: [{
-              provide: STYLES_DATA,
-              useValue: styles,
-            }],
-          })),
-        styles,
-      }));
     });
   }
 }

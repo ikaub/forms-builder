@@ -7,7 +7,7 @@ import {
   REMOVE_FROM_FORM_BUILDER,
   SWAP_COMPONENTS
 } from './form.types';
-import {ComponentInterface, GeneralFormStyles, Styles} from '../types/layout.types';
+import {ComponentInterface, GeneralFormStyles, StyledComponentPortal, Styles} from '../types/layout.types';
 
 export const drop = createAction(
   DROP_INTO_FORM_BUILDER,
@@ -31,7 +31,7 @@ export const chooseComponent = createAction(
 
 export const changeStyles = createAction(
   CHANGE_STYLES,
-  props<{ styles: Styles, componentIndex: number }>(),
+  props<{ styles: Styles, index: number }>(),
 );
 
 export const changeGeneralStyles = createAction(

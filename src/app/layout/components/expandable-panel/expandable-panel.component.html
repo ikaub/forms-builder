@@ -1,0 +1,68 @@
+<mat-expansion-panel [expanded]="index === chosenComponent">
+  <mat-expansion-panel-header>
+    <mat-panel-title>{{component.styles.placeholderText}}</mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <form [formGroup]="formGroup">
+    <div class="form-group">
+      <label>
+        Placeholder text:
+        <input
+          formControlName="placeholderText"
+          type="text"
+        >
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Width
+        <input formControlName="width" type="text">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Height
+        <input formControlName="height" type="text">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Required
+        <input formControlName="required" type="checkbox">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Border Style
+        <input formControlName="borderStyle" type="text">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Font Size
+        <input formControlName="fontSize" type="text">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Input Font Weight
+        <input formControlName="fontWeight" type="text">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Select Color Input
+        <input formControlName="color" type="color">
+      </label>
+    </div>
+
+  </form>
+
+</mat-expansion-panel>

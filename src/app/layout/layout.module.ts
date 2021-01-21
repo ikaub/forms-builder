@@ -10,6 +10,10 @@ import {reducer} from './store/form.reducer';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {GENERAL_FORM_STYLES, STYLES_DATA} from './types/layout.types';
+import {ReactiveComponentModule} from '@ngrx/component';
+import {PortalsService} from './services/portals.service';
+import { ExpandablePanelComponent } from './components/expandable-panel/expandable-panel.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -19,11 +23,14 @@ import {GENERAL_FORM_STYLES, STYLES_DATA} from './types/layout.types';
     StoreModule.forFeature('form', reducer),
     DragDropModule,
     MatExpansionModule,
+    ReactiveComponentModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     AvailableComponentsComponent,
     FormBuilderComponent,
     GeneralStylesComponent,
+    ExpandablePanelComponent,
   ],
   exports: [
     AvailableComponentsComponent,
@@ -32,7 +39,8 @@ import {GENERAL_FORM_STYLES, STYLES_DATA} from './types/layout.types';
   ],
   providers: [
     {provide: STYLES_DATA, useValue: ''},
-    {provide: GENERAL_FORM_STYLES, useValue: ''}
+    {provide: GENERAL_FORM_STYLES, useValue: ''},
+    PortalsService,
   ]
 })
 export class LayoutModule {

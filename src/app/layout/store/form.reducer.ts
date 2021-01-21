@@ -116,13 +116,11 @@ const formReducer = createReducer(
     ...state,
     chosenComponent: componentIndex,
   })),
-  on(changeStyles, (state, {styles, componentIndex}) => ({
+  on(changeStyles, (state, {styles}) => ({
     ...state,
-    selectedComponents: state.selectedComponents.map(
-      (component: ComponentInterface, index: number) => index === componentIndex
-        ? {...component, styles: {...styles}}
-        : {...component},
-    ),
+    selectedComponents: state.selectedComponents.map((selected, index) => index === state.chosenComponent
+      ? {component: selected.component, styles}
+      : selected),
   })),
   on(changeGeneralStyles, (state, {generalStyles}) => ({
     ...state,

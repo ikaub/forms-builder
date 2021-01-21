@@ -6,6 +6,8 @@ import {remove} from '../../store/form.actions';
 import {StyledComponentPortal} from '../../types/layout.types';
 import {AppState} from '../../../types/app.types';
 import {selectAvailableComponents} from '../../store/form.selectors';
+import {Observable} from 'rxjs';
+import {PortalsService} from '../../services/portals.service';
 
 @Component({
   selector: 'app-available-components',
@@ -14,18 +16,13 @@ import {selectAvailableComponents} from '../../store/form.selectors';
 })
 export class AvailableComponentsComponent implements OnInit {
 
-  componentsList: StyledComponentPortal[] = [];
+  componentsList$!: Observable<StyledComponentPortal[]>;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private portalsService: PortalsService) {
   }
 
   ngOnInit(): void {
-    this.store.pipe(select(selectAvailableComponents)).subscribe(components => {
-      this.componentsList = components.map(({component, styles}) => ({
-        component: new ComponentPortal<any>(component),
-        styles,
-      }));
-    });
+    this.componentsList$ = this.portalsService.getAvailableComponentsPortals();
   }
 
   drop(event: CdkDragDrop<any>): void {
