@@ -72,7 +72,7 @@
       <div class="form-group">
         <label>
           Select Color Input
-          <input [value]="component.styles.color" type="color">
+          <input name="color" (input)="changeStyles($event)" [value]="component.styles.color" type="color">
         </label>
       </div>
 
