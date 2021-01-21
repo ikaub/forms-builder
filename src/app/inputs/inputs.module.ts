@@ -7,8 +7,6 @@ import {TextareaComponent} from './components/textarea/textarea.component';
 import {CommonModule} from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSelectModule} from '@angular/material/select';
-import {MatOptionModule} from '@angular/material/core';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
@@ -16,8 +14,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     CommonModule,
     MatInputModule,
     MatCheckboxModule,
-    MatSelectModule,
-    MatOptionModule,
     DragDropModule,
   ],
   declarations: [
@@ -25,7 +21,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ButtonComponent,
     CheckboxComponent,
     SelectComponent,
-    TextareaComponent
+    TextareaComponent,
   ],
   exports: [
     InputComponent,

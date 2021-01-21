@@ -1,4 +1,16 @@
 <label cdkDrag class="label">
-  label
-  <input type="text" class="input">
+  {{styles?.placeholderText || 'Text field'}}
+  <input [ngStyle]="styles
+? {
+  'width': styles.width,
+  'height': styles.height,
+  'font-size': styles.fontSize,
+  'font-weight': styles.fontWeight,
+  'color': styles.color,
+  'border': styles.borderStyle
+}
+: {
+  'width': '100%',
+  'height': '40px'
+}" type="text" class="input">
 </label>

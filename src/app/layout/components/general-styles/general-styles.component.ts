@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../types/app.types';
 import {selectChosenComponent, selectSelectedComponents} from '../../store/form.selectors';
+import {StyledComponentPortal, Styles} from '../../types/layout.types';
+import {changeStyles} from '../../store/form.actions';
 
 @Component({
   selector: 'app-general-styles',
@@ -9,8 +11,9 @@ import {selectChosenComponent, selectSelectedComponents} from '../../store/form.
   styleUrls: ['./general-styles.component.scss']
 })
 export class GeneralStylesComponent implements OnInit {
-  selectedComponents!: any[];
-  chosenComponent!: number | null;
+  selectedComponents!: StyledComponentPortal[];
+  chosenComponent!: number;
+  styles!: Styles;
 
   constructor(private store: Store<AppState>) {
   }
@@ -29,6 +32,16 @@ export class GeneralStylesComponent implements OnInit {
   getChosenComponent(): void {
     this.store.pipe(select(selectChosenComponent)).subscribe(index => {
       this.chosenComponent = index;
+      this.styles = this.selectedComponents[this.chosenComponent]?.styles;
     });
+  }
+
+  changeStyles(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.styles = {...this.styles, [target.name]: target.value};
+  }
+
+  changeComponent(): void {
+    this.store.dispatch(changeStyles({styles: this.styles}));
   }
 }

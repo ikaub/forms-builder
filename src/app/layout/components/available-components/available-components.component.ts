@@ -3,7 +3,7 @@ import {ComponentPortal} from '@angular/cdk/portal';
 import {select, Store} from '@ngrx/store';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {remove} from '../../store/form.actions';
-import {FormState, LabeledComponentPortal} from '../../types/layout.types';
+import {StyledComponentPortal} from '../../types/layout.types';
 import {AppState} from '../../../types/app.types';
 import {selectAvailableComponents} from '../../store/form.selectors';
 
@@ -14,7 +14,7 @@ import {selectAvailableComponents} from '../../store/form.selectors';
 })
 export class AvailableComponentsComponent implements OnInit {
 
-  componentsList: LabeledComponentPortal[] = [];
+  componentsList: StyledComponentPortal[] = [];
 
   constructor(private store: Store<AppState>) {
   }
@@ -29,6 +29,6 @@ export class AvailableComponentsComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any>): void {
-    this.store.dispatch(remove({component: event.previousIndex}));
+    this.store.dispatch(remove({componentIndex: event.previousIndex}));
   }
 }

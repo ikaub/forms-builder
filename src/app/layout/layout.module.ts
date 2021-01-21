@@ -9,6 +9,7 @@ import {StoreModule} from '@ngrx/store';
 import {reducer} from './store/form.reducer';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {STYLES_DATA} from './types/layout.types';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     AvailableComponentsComponent,
     FormBuilderComponent,
     GeneralStylesComponent,
-  ]
+  ],
+  providers: [{provide: STYLES_DATA, useValue: ''}]
 })
 export class LayoutModule {
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Styles, STYLES_DATA} from '../../../layout/types/layout.types';
 
 @Component({
   selector: 'app-textarea',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TextareaComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(STYLES_DATA) public styles: Styles) { }
 
   ngOnInit(): void {
   }

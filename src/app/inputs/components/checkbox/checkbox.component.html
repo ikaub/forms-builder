@@ -1,1 +1,15 @@
-<p>checkbox works!</p>
+<mat-checkbox class="checkbox" cdkDrag color="primary" [ngStyle]="styles
+? {
+  'width': styles.width,
+  'height': styles.height,
+  'font-size': styles.fontSize,
+  'font-weight': styles.fontWeight,
+  'color': styles.color,
+  'border': styles.borderStyle
+}
+: {
+  'width': '120px',
+  'height': '60px'
+}">
+  {{styles?.placeholderText || 'Checkbox'}}
+</mat-checkbox>

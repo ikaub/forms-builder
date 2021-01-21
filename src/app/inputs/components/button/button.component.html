@@ -1,3 +1,15 @@
-<div class="btn" cdkDrag>
-  {{placeholderText || 'Button'}}
+<div class="btn" [ngStyle]="styles
+? {
+  'width': styles.width,
+  'height': styles.height,
+  'font-size': styles.fontSize,
+  'font-weight': styles.fontWeight,
+  'color': styles.color,
+  'border': styles.borderStyle
+}
+: {
+  'width': '150px',
+  'height': '40px'
+}" cdkDrag>
+  {{styles?.placeholderText || 'Button'}}
 </div>

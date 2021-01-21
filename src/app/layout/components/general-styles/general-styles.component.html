@@ -8,31 +8,36 @@
   <mat-expansion-panel
     [expanded]="chosenComponent === ndx"
     *ngFor="let component of selectedComponents; index as ndx"
+    (opened)="chosenComponent=ndx; styles=selectedComponents[ndx].styles"
   >
     <mat-expansion-panel-header>
       <mat-panel-title>{{component.styles.placeholderText}}</mat-panel-title>
     </mat-expansion-panel-header>
 
-    <form>
-
+    <form (keyup.enter)="changeComponent()">
       <div class="form-group">
         <label>
           Placeholder text:
-          <input [value]="component.styles.placeholderText" type="text">
+          <input
+            name="placeholderText"
+            (input)="changeStyles($event)"
+            [value]="component.styles.placeholderText"
+            type="text"
+          >
         </label>
       </div>
 
       <div class="form-group">
         <label>
           Width
-          <input [value]="component.styles.width" type="text">
+          <input (input)="changeStyles($event)" name="width" [value]="component.styles.width" type="text">
         </label>
       </div>
 
       <div class="form-group">
         <label>
           Height
-          <input [value]="component.styles.height" type="text">
+          <input (input)="changeStyles($event)" name="height" [value]="component.styles.height" type="text">
         </label>
       </div>
 
@@ -46,21 +51,21 @@
       <div class="form-group">
         <label>
           Border Style
-          <input [value]="component.styles.borderStyle" type="text">
+          <input (input)="changeStyles($event)" name="borderStyle" [value]="component.styles.borderStyle" type="text">
         </label>
       </div>
 
       <div class="form-group">
         <label>
           Font Size
-          <input [value]="component.styles.fontSize" type="number">
+          <input (input)="changeStyles($event)" name="fontSize" [value]="component.styles.fontSize" type="text">
         </label>
       </div>
 
       <div class="form-group">
         <label>
           Input Font Weight
-          <input [value]="component.styles.fontWeight" type="text">
+          <input (input)="changeStyles($event)" name="fontWeight" [value]="component.styles.fontWeight" type="text">
         </label>
       </div>
 

@@ -8,7 +8,7 @@
 >
   <ul>
     <li (click)="chooseComponent(ndx)" *ngFor="let component of selectedComponents; index as ndx">
-      <ng-template (attached)="injectStyles($event)" [cdkPortalOutlet]="component.component"></ng-template>
+      <ng-template [cdkPortalOutlet]="component.component"></ng-template>
     </li>
   </ul>
 </div>

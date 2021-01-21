@@ -1,1 +1,17 @@
-<p>select works!</p>
+<select class="select" [ngStyle]="styles
+? {
+  'width': styles.width,
+  'height': styles.height,
+  'font-size': styles.fontSize,
+  'font-weight': styles.fontWeight,
+  'color': styles.color,
+  'border': styles.borderStyle
+}
+: {
+  'width': '150px',
+  'height': '40px'
+}" cdkDrag>
+  <option>
+    {{styles?.placeholderText || 'Select'}}
+  </option>
+</select>

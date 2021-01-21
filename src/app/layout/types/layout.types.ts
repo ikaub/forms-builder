@@ -1,4 +1,5 @@
 import {ComponentPortal} from '@angular/cdk/portal';
+import {InjectionToken} from '@angular/core';
 
 export interface ComponentInterface {
   component: any;
@@ -8,21 +9,23 @@ export interface ComponentInterface {
 export interface FormState {
   availableComponents: ComponentInterface[];
   selectedComponents: ComponentInterface[];
-  chosenComponent: number | null;
+  chosenComponent: number;
 }
 
-export interface LabeledComponentPortal {
+export interface StyledComponentPortal {
   component: ComponentPortal<any> | null;
   styles: Styles;
 }
 
-export interface Styles extends Record<string, string | number | boolean> {
+export interface Styles extends Record<string, string | boolean> {
   placeholderText: string;
-  width: number;
-  height: number;
+  width: string;
+  height: string;
   required: boolean;
   borderStyle: string;
-  fontSize: number;
+  fontSize: string;
   fontWeight: string;
   color: string;
 }
+
+export const STYLES_DATA = new InjectionToken<Styles>('Styles Data');
