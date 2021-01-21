@@ -4,7 +4,7 @@ import {ButtonComponent} from '../../inputs/components/button/button.component';
 import {TextareaComponent} from '../../inputs/components/textarea/textarea.component';
 import {SelectComponent} from '../../inputs/components/select/select.component';
 import {CheckboxComponent} from '../../inputs/components/checkbox/checkbox.component';
-import {changeStyles, chooseComponent, drop, remove} from './form.actions';
+import {changeGeneralStyles, changeStyles, chooseComponent, drop, remove} from './form.actions';
 import {ComponentInterface, FormState} from '../types/layout.types';
 
 const initialState: FormState = {
@@ -77,6 +77,12 @@ const initialState: FormState = {
   ],
   selectedComponents: [],
   chosenComponent: 0,
+  generalStyles: {
+    horizontalPadding: '10px',
+    verticalPadding: '10px',
+    margin: '10px',
+    color: '#ffffff',
+  }
 };
 
 const formReducer = createReducer(
@@ -106,6 +112,10 @@ const formReducer = createReducer(
         : {...component},
     ),
   })),
+  on(changeGeneralStyles, (state, {generalStyles}) => ({
+    ...state,
+    generalStyles,
+  }))
 );
 
 export const reducer = (state: FormState, action: Action) => formReducer(state, action);

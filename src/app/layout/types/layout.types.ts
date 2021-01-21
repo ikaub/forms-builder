@@ -10,6 +10,7 @@ export interface FormState {
   availableComponents: ComponentInterface[];
   selectedComponents: ComponentInterface[];
   chosenComponent: number;
+  generalStyles: GeneralFormStyles;
 }
 
 export interface StyledComponentPortal {
@@ -17,7 +18,7 @@ export interface StyledComponentPortal {
   styles: Styles;
 }
 
-export interface Styles extends Record<string, string | boolean> {
+export interface Styles {
   placeholderText: string;
   width: string;
   height: string;
@@ -28,4 +29,13 @@ export interface Styles extends Record<string, string | boolean> {
   color: string;
 }
 
+export interface GeneralFormStyles {
+  verticalPadding: string;
+  horizontalPadding: string;
+  margin: string;
+  color: string;
+}
+
 export const STYLES_DATA = new InjectionToken<Styles>('Styles Data');
+
+export const GENERAL_FORM_STYLES = new InjectionToken<GeneralFormStyles>('General Form Styles Data');

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ComponentPortal} from '@angular/cdk/portal';
 import {GeneralStylesComponent} from './layout/components/general-styles/general-styles.component';
 import {FormBuilderComponent} from './layout/components/form-builder/form-builder.component';

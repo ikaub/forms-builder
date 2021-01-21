@@ -5,9 +5,17 @@
   cdkDropListConnectedTo="availableComponents"
   (cdkDropListDropped)="drop($event)"
   [cdkDropListData]="selectedComponents"
+  [ngStyle]="{
+  'padding': generalStyles.verticalPadding + ' ' + generalStyles.horizontalPadding,
+  'background-color': generalStyles.color
+  }"
 >
   <ul>
-    <li (click)="chooseComponent(ndx)" *ngFor="let component of selectedComponents; index as ndx">
+    <li
+      [ngStyle]="{'margin': generalStyles.margin + ' 0'}"
+      (click)="chooseComponent(ndx)"
+      *ngFor="let component of selectedComponents; index as ndx"
+    >
       <ng-template [cdkPortalOutlet]="component.component"></ng-template>
     </li>
   </ul>

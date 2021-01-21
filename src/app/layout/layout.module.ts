@@ -9,7 +9,7 @@ import {StoreModule} from '@ngrx/store';
 import {reducer} from './store/form.reducer';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {STYLES_DATA} from './types/layout.types';
+import {GENERAL_FORM_STYLES, STYLES_DATA} from './types/layout.types';
 
 @NgModule({
   imports: [
@@ -30,7 +30,10 @@ import {STYLES_DATA} from './types/layout.types';
     FormBuilderComponent,
     GeneralStylesComponent,
   ],
-  providers: [{provide: STYLES_DATA, useValue: ''}]
+  providers: [
+    {provide: STYLES_DATA, useValue: ''},
+    {provide: GENERAL_FORM_STYLES, useValue: ''}
+  ]
 })
 export class LayoutModule {
 }

@@ -19,3 +19,7 @@ export const selectChosenComponent = createSelector(
   (state: FormState) => state.chosenComponent,
 );
 
+export const selectGeneralStyles = createSelector(
+  formFeatureSelector,
+  (state: FormState) => state.generalStyles,
+);

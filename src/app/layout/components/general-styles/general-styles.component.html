@@ -4,33 +4,53 @@
       <mat-panel-title>General styles</mat-panel-title>
     </mat-expansion-panel-header>
 
-    <form>
+    <form (keyup.enter)="changeForm()">
 
       <div class="form-group">
         <label>
           Horizontal padding:
-          <input type="text" />
+          <input
+            (input)="changeGeneralStyles($event)"
+            name="horizontalPadding"
+            [value]="generalStyles.horizontalPadding"
+            type="text"
+          />
         </label>
       </div>
 
       <div class="form-group">
         <label>
           Vertical padding:
-          <input type="text" />
+          <input
+            (input)="changeGeneralStyles($event)"
+            name="verticalPadding"
+            [value]="generalStyles.verticalPadding"
+            type="text"
+          />
         </label>
       </div>
 
       <div class="form-group">
         <label>
           Margin between components:
-          <input type="text" />
+          <input
+            (input)="changeGeneralStyles($event)"
+            name="margin"
+            [value]="generalStyles.margin"
+            type="text"
+          />
         </label>
       </div>
 
       <div class="form-group">
         <label>
           Background Color:
-          <input type="color" value="#ffffff"/>
+          <input
+            (input)="changeGeneralStyles($event)"
+            name="color"
+            [value]="generalStyles.color"
+            type="color"
+          />
         </label>
       </div>
     </form>
