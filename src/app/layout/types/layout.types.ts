@@ -24,6 +24,7 @@ export interface Styles {
   height: string;
   required: boolean;
   border: string;
+  'border-radius': string;
   'font-size': string;
   'font-weight': string;
   color: string;

@@ -20,6 +20,7 @@ const initialState: FormState = {
         required: false,
         color: '#000',
         border: '1px solid #000',
+        'border-radius': '15px',
       }
     },
     {
@@ -33,6 +34,7 @@ const initialState: FormState = {
         required: false,
         color: '#000',
         border: '1px solid #000',
+        'border-radius': '15px',
       }
     },
     {
@@ -46,6 +48,7 @@ const initialState: FormState = {
         required: false,
         color: '#000',
         border: '1px solid #000',
+        'border-radius': '15px',
       }
     },
     {
@@ -59,6 +62,7 @@ const initialState: FormState = {
         required: false,
         color: '#000',
         border: '1px solid #000',
+        'border-radius': '15px',
       }
     },
     {
@@ -72,6 +76,7 @@ const initialState: FormState = {
         required: false,
         color: '#000',
         border: '1px solid #000',
+        'border-radius': '15px',
       }
     },
   ],
