@@ -11,7 +11,7 @@ import {ComponentInterface, GeneralFormStyles, Styles} from '../types/layout.typ
 
 export const drop = createAction(
   DROP_INTO_FORM_BUILDER,
-  props<{ component: ComponentInterface }>(),
+  props<{ component: ComponentInterface, index: number }>(),
 );
 
 export const remove = createAction(

@@ -33,7 +33,8 @@ export class FormBuilderComponent implements OnInit {
         component: {
           component: event.previousContainer.data[event.previousIndex].component.component,
           styles: event.previousContainer.data[event.previousIndex].styles
-        }
+        },
+        index: event.currentIndex,
       };
       this.store.dispatch(drop(props));
     } else {
