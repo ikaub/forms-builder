@@ -83,7 +83,8 @@ const formReducer = createReducer(
   initialState,
   on(drop, (state: FormState, {component}) => ({
     ...state,
-    selectedComponents: [...state.selectedComponents, component]
+    selectedComponents: [...state.selectedComponents, component],
+    chosenComponent: state.selectedComponents.length,
   })),
   on(remove, (state, {componentIndex}) => {
     const newComponents = [...state.selectedComponents];
