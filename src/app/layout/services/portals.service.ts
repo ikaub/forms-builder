@@ -1,7 +1,7 @@
 import {Injectable, Injector} from '@angular/core';
-import {select, Store} from '@ngrx/store';
+import {DefaultProjectorFn, MemoizedSelector, select, Store} from '@ngrx/store';
 import {AppState} from '../../types/app.types';
-import {selectAvailableComponents, selectSelectedComponents} from '../store/form.selectors';
+import {selectSelectedComponents} from '../store/form.selectors';
 import {ComponentPortal} from '@angular/cdk/portal';
 import {ComponentInterface, StyledComponentPortal, STYLES_DATA} from '../types/layout.types';
 import {Observable} from 'rxjs';
@@ -13,21 +13,11 @@ export class PortalsService {
   constructor(private store: Store<AppState>, private injector: Injector) {
   }
 
-  getAvailableComponentsPortals(): Observable<StyledComponentPortal[]> {
+  getPortalsBySelector(
+    selector: MemoizedSelector<AppState, ComponentInterface[], DefaultProjectorFn<ComponentInterface[]>>
+  ): Observable<StyledComponentPortal[]> {
     return this.store.pipe(
-      select(selectAvailableComponents),
-      map((components: ComponentInterface[]) => components.map(
-        ({component, styles}) => ({
-          component: new ComponentPortal<any>(component),
-          styles,
-        })
-      )),
-    );
-  }
-
-  getSelectedComponentsPortals(): Observable<StyledComponentPortal[]> {
-    return this.store.pipe(
-      select(selectSelectedComponents),
+      select(selector),
       map((components: ComponentInterface[]) => components.map(({component, styles}) => ({
         component: new ComponentPortal<any>(
           component,

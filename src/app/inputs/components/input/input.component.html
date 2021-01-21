@@ -1,16 +1,4 @@
 <label class="label">
   {{styles?.placeholderText || 'Text field'}}
-  <input [ngStyle]="styles
-? {
-  'width': styles.width,
-  'height': styles.height,
-  'font-size': styles.fontSize,
-  'font-weight': styles.fontWeight,
-  'color': styles.color,
-  'border': styles.borderStyle
-}
-: {
-  'width': '100%',
-  'height': '40px'
-}" type="text" class="input">
+  <input [ngStyle]="styles" type="text" class="input">
 </label>

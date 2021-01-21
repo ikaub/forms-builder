@@ -1,14 +1,2 @@
-<textarea [ngStyle]="styles
-? {
-  'width': styles.width,
-  'height': styles.height,
-  'font-size': styles.fontSize,
-  'font-weight': styles.fontWeight,
-  'color': styles.color,
-  'border': styles.borderStyle
-}
-: {
-  'width': '100%',
-  'height': '130px'
-}" class="textarea" placeholder="{{styles?.placeholderText || 'Textarea'}}">
+<textarea [ngStyle]="styles" class="textarea" placeholder="{{styles?.placeholderText || 'Textarea'}}">
 </textarea>

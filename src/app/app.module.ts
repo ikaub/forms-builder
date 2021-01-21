@@ -8,7 +8,6 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {LayoutModule} from './layout/layout.module';
-import {ReactiveFormsModule} from '@angular/forms';
 import {PortalModule} from '@angular/cdk/portal';
 
 @NgModule({
@@ -21,7 +20,6 @@ import {PortalModule} from '@angular/cdk/portal';
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     EffectsModule.forRoot([]),
-    ReactiveFormsModule,
     LayoutModule,
     PortalModule,
   ],

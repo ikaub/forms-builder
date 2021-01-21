@@ -5,7 +5,7 @@ import {TextareaComponent} from '../../inputs/components/textarea/textarea.compo
 import {SelectComponent} from '../../inputs/components/select/select.component';
 import {CheckboxComponent} from '../../inputs/components/checkbox/checkbox.component';
 import {changeGeneralStyles, changeStyles, chooseComponent, drop, remove, swapComponents} from './form.actions';
-import {ComponentInterface, FormState} from '../types/layout.types';
+import {FormState} from '../types/layout.types';
 
 const initialState: FormState = {
   availableComponents: [
@@ -15,11 +15,11 @@ const initialState: FormState = {
         placeholderText: 'Text field',
         width: '100%',
         height: '40px',
-        fontSize: '14px',
-        fontWeight: 'normal',
+        'font-size': '14px',
+        'font-weight': 'normal',
         required: false,
         color: '#000',
-        borderStyle: '1px solid #000',
+        border: '1px solid #000',
       }
     },
     {
@@ -28,11 +28,11 @@ const initialState: FormState = {
         placeholderText: 'Button',
         width: '150px',
         height: '40px',
-        fontSize: '14px',
-        fontWeight: 'normal',
+        'font-size': '14px',
+        'font-weight': 'normal',
         required: false,
         color: '#000',
-        borderStyle: '1px solid #000',
+        border: '1px solid #000',
       }
     },
     {
@@ -41,11 +41,11 @@ const initialState: FormState = {
         placeholderText: 'Textarea',
         width: '100%',
         height: '130px',
-        fontSize: '14',
-        fontWeight: 'normal',
+        'font-size': '14',
+        'font-weight': 'normal',
         required: false,
         color: '#000',
-        borderStyle: '1px solid #000',
+        border: '1px solid #000',
       }
     },
     {
@@ -54,11 +54,11 @@ const initialState: FormState = {
         placeholderText: 'Checkbox',
         width: '120px',
         height: '60px',
-        fontSize: '14px',
-        fontWeight: 'normal',
+        'font-size': '14px',
+        'font-weight': 'normal',
         required: false,
         color: '#000',
-        borderStyle: '1px solid #000',
+        border: '1px solid #000',
       }
     },
     {
@@ -67,11 +67,11 @@ const initialState: FormState = {
         placeholderText: 'Select',
         width: '150px',
         height: '40px',
-        fontSize: '14px',
-        fontWeight: 'normal',
+        'font-size': '14px',
+        'font-weight': 'normal',
         required: false,
         color: '#000',
-        borderStyle: '1px solid #000',
+        border: '1px solid #000',
       }
     },
   ],

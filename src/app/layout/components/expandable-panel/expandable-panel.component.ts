@@ -13,10 +13,10 @@ import {selectChosenComponent} from '../../store/form.selectors';
   styleUrls: ['./expandable-panel.component.scss']
 })
 export class ExpandablePanelComponent implements OnInit {
-  @Input() component: ComponentInterface;
-  @Input() index: number;
-  formGroup: FormGroup;
-  chosenComponent: number;
+  @Input() component!: ComponentInterface;
+  @Input() index!: number;
+  formGroup!: FormGroup;
+  chosenComponent!: number;
 
   constructor(private formBuilder: FormBuilder, private store: Store<AppState>) {
   }
@@ -33,9 +33,9 @@ export class ExpandablePanelComponent implements OnInit {
       width: new FormControl(this.component.styles.width),
       height: new FormControl(this.component.styles.height),
       required: new FormControl(this.component.styles.required),
-      borderStyle: new FormControl(this.component.styles.borderStyle),
-      fontSize: new FormControl(this.component.styles.fontSize),
-      fontWeight: new FormControl(this.component.styles.fontWeight),
+      border: new FormControl(this.component.styles.border),
+      'font-size': new FormControl(this.component.styles['font-size']),
+      'font-weight': new FormControl(this.component.styles['font-weight']),
       color: new FormControl(this.component.styles.color),
     });
   }

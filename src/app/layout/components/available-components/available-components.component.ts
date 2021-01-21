@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ComponentPortal} from '@angular/cdk/portal';
-import {select, Store} from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {remove} from '../../store/form.actions';
 import {StyledComponentPortal} from '../../types/layout.types';
@@ -22,7 +21,7 @@ export class AvailableComponentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.componentsList$ = this.portalsService.getAvailableComponentsPortals();
+    this.componentsList$ = this.portalsService.getPortalsBySelector(selectAvailableComponents);
   }
 
   drop(event: CdkDragDrop<any>): void {

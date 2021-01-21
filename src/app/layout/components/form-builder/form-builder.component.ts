@@ -4,7 +4,7 @@ import {chooseComponent, drop, swapComponents} from '../../store/form.actions';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {GeneralFormStyles, StyledComponentPortal} from '../../types/layout.types';
 import {AppState} from '../../../types/app.types';
-import {selectChosenComponent, selectGeneralStyles} from '../../store/form.selectors';
+import {selectGeneralStyles, selectSelectedComponents} from '../../store/form.selectors';
 import {PortalsService} from '../../services/portals.service';
 import {Observable} from 'rxjs';
 
@@ -46,7 +46,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   getSelectedComponents(): void {
-    this.selectedComponents$ = this.portalsService.getSelectedComponentsPortals();
+    this.selectedComponents$ = this.portalsService.getPortalsBySelector(selectSelectedComponents);
   }
 
   getGeneralStyles(): void {

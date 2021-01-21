@@ -1,18 +1,3 @@
-<div class="btn" [ngStyle]="styles
-? {
-  'width': styles.width,
-  'height': styles.height,
-  'font-size': styles.fontSize,
-  'font-weight': styles.fontWeight,
-  'color': styles.color,
-  'border': styles.borderStyle,
-  'display': 'flex',
-  'justify-content': 'center',
-  'align-items': 'center'
-}
-: {
-  'width': '150px',
-  'height': '40px'
-}">
+<div class="btn" [ngStyle]="styles">
   {{styles?.placeholderText || 'Button'}}
 </div>

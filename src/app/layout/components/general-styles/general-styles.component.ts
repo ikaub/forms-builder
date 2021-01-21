@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../types/app.types';
-import {selectChosenComponent, selectGeneralStyles, selectSelectedComponents} from '../../store/form.selectors';
-import {ComponentInterface, GeneralFormStyles, StyledComponentPortal, Styles} from '../../types/layout.types';
-import {changeGeneralStyles, changeStyles} from '../../store/form.actions';
+import {selectGeneralStyles} from '../../store/form.selectors';
+import {ComponentInterface, GeneralFormStyles} from '../../types/layout.types';
+import {changeGeneralStyles} from '../../store/form.actions';
 import {PortalsService} from '../../services/portals.service';
 import {Observable} from 'rxjs';
-import {debounceTime, distinctUntilChanged, map, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-general-styles',
