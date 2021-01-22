@@ -14,6 +14,7 @@ import {ReactiveComponentModule} from '@ngrx/component';
 import {PortalsService} from './services/portals.service';
 import { ExpandablePanelComponent } from './components/expandable-panel/expandable-panel.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { GeneralStylesFormComponent } from './components/general-styles-form/general-styles-form.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     FormBuilderComponent,
     GeneralStylesComponent,
     ExpandablePanelComponent,
+    GeneralStylesFormComponent,
   ],
   exports: [
     AvailableComponentsComponent,

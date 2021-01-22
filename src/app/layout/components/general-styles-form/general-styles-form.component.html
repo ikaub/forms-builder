@@ -1,0 +1,48 @@
+<mat-expansion-panel *ngrxLet="generalStyles$ as generalStyles">
+  <mat-expansion-panel-header>
+    <mat-panel-title>General styles</mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <form [formGroup]="formGroup">
+
+    <div class="form-group">
+      <label>
+        Horizontal padding:
+        <input
+          formControlName="horizontalPadding"
+          type="text"
+        />
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Vertical padding:
+        <input
+          formControlName="verticalPadding"
+          type="text"
+        />
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Margin between components:
+        <input
+          formControlName="margin"
+          type="text"
+        />
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        Background Color:
+        <input
+          formControlName="color"
+          type="color"
+        />
+      </label>
+    </div>
+  </form>
+</mat-expansion-panel>
