@@ -7,3 +7,6 @@ export const CHANGE_GENERAL_STYLES = '[General Styles] Change General Styles';
 
 export const GET_STYLES = '[Available Components] Get Styles';
 export const GET_STYLES_SUCCESS = '[Available Components] Get Styles Success';
+
+export const GET_GENERAL_STYLES = '[General Styles] Get Global Styles';
+export const GET_GENERAL_STYLES_SUCCESS = '[General Styles] Get Global Styles Success';

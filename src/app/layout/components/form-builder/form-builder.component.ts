@@ -3,7 +3,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { chooseComponent, drop, swapComponents } from '../../store/form.actions';
+import { chooseComponent, drop, getGeneralStyles, swapComponents } from '../../store/form.actions';
 import { ComponentInterface, GeneralFormStyles, StylesInjector } from '../../types/layout.types';
 import { AppState } from '../../../types/app.types';
 import { selectGeneralStyles, selectSelectedComponents } from '../../store/form.selectors';
@@ -48,6 +48,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   getGeneralStyles(): void {
+    this.store.dispatch(getGeneralStyles());
     this.store.pipe(select(selectGeneralStyles)).subscribe(generalStyles => {
       this.generalStyles = generalStyles;
     });

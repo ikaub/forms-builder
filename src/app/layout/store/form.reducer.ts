@@ -5,8 +5,17 @@ import { ButtonComponent } from '../../inputs/components/button/button.component
 import { TextareaComponent } from '../../inputs/components/textarea/textarea.component';
 import { SelectComponent } from '../../inputs/components/select/select.component';
 import { CheckboxComponent } from '../../inputs/components/checkbox/checkbox.component';
-import { changeGeneralStyles, changeStyles, chooseComponent, drop, getStylesSuccess, remove, swapComponents } from './form.actions';
-import { FormState, Styles } from '../types/layout.types';
+import {
+  changeGeneralStyles,
+  changeStyles,
+  chooseComponent,
+  drop,
+  getGeneralStylesSuccess,
+  getStylesSuccess,
+  remove,
+  swapComponents
+} from './form.actions';
+import { FormState, GeneralFormStyles, Styles } from '../types/layout.types';
 
 const initialState: FormState = {
   availableComponents: [
@@ -38,12 +47,7 @@ const initialState: FormState = {
   ],
   selectedComponents: [],
   chosenComponent: 0,
-  generalStyles: {
-    horizontalPadding: '10px',
-    verticalPadding: '10px',
-    margin: '10px',
-    color: '#ffffff',
-  }
+  generalStyles: {} as GeneralFormStyles,
 };
 
 const formReducer = createReducer(
@@ -98,6 +102,10 @@ const formReducer = createReducer(
       ...component,
       styles: styles.filter(style => style.id === component.id)[0],
     })),
+  })),
+  on(getGeneralStylesSuccess, (state, {styles}) => ({
+    ...state,
+    generalStyles: styles,
   }))
 );
 

@@ -66,5 +66,11 @@
       "border": "1px solid #000",
       "border-radius": "15px"
     }
-  ]
+  ],
+  "general-styles": {
+    "verticalPadding": "10px",
+    "horizontalPadding": "10px",
+    "margin": "10px",
+    "color": "#ffffff"
+  }
 }

@@ -4,7 +4,7 @@ import {
   CHANGE_GENERAL_STYLES,
   CHANGE_STYLES,
   CHOOSE_COMPONENT,
-  DROP_INTO_FORM_BUILDER, GET_STYLES, GET_STYLES_SUCCESS,
+  DROP_INTO_FORM_BUILDER, GET_GENERAL_STYLES, GET_GENERAL_STYLES_SUCCESS, GET_STYLES, GET_STYLES_SUCCESS,
   REMOVE_FROM_FORM_BUILDER,
   SWAP_COMPONENTS
 } from './form.types';
@@ -47,4 +47,13 @@ export const getStyles = createAction(
 export const getStylesSuccess = createAction(
   GET_STYLES_SUCCESS,
   props<{ styles: Styles[] }>(),
+);
+
+export const getGeneralStyles = createAction(
+  GET_GENERAL_STYLES,
+);
+
+export const getGeneralStylesSuccess = createAction(
+  GET_GENERAL_STYLES_SUCCESS,
+  props<{ styles: GeneralFormStyles }>(),
 );
