@@ -15,7 +15,6 @@ import { selectChosenComponent } from '../../store/form.selectors';
 })
 export class ExpandablePanelComponent implements OnInit {
   @Input() component!: ComponentInterface;
-  @Input() index!: number;
   formGroup!: FormGroup;
   chosenComponent!: number;
 
@@ -36,9 +35,9 @@ export class ExpandablePanelComponent implements OnInit {
       required: new FormControl(this.component.styles.required),
       border: new FormControl(this.component.styles.border),
       'border-radius': new FormControl(this.component.styles['border-radius']),
-      'font-size': new FormControl(this.component.styles['font-size']),
-      'font-weight': new FormControl(this.component.styles['font-weight']),
-      color: new FormControl(this.component.styles.color),
+      'font-size': new FormControl(this.component?.styles['font-size']),
+      'font-weight': new FormControl(this.component?.styles['font-weight']),
+      color: new FormControl(this.component.styles?.color),
     });
   }
 

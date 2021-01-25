@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
 
-import { StyledComponentPortal } from '../../types/layout.types';
+import { ComponentInterface, StylesInjector } from '../../types/layout.types';
 import { AppState } from '../../../types/app.types';
 import { selectAvailableComponents } from '../../store/form.selectors';
-import { PortalsService } from '../../services/portals.service';
-import { remove } from '../../store/form.actions';
+import { getStyles, remove } from '../../store/form.actions';
+import { StylesInjectionService } from '../../services/styles-injection.service';
 
 @Component({
   selector: 'app-available-components',
@@ -16,16 +16,21 @@ import { remove } from '../../store/form.actions';
 })
 export class AvailableComponentsComponent implements OnInit {
 
-  componentsList$!: Observable<StyledComponentPortal[]>;
+  componentsList$!: Observable<ComponentInterface[]>;
 
-  constructor(private store: Store<AppState>, private portalsService: PortalsService) {
+  constructor(private store: Store<AppState>, private stylesInjectionService: StylesInjectionService) {
   }
 
   ngOnInit(): void {
-    this.componentsList$ = this.portalsService.getPortalsBySelector(selectAvailableComponents);
+    this.store.dispatch(getStyles());
+    this.componentsList$ = this.store.pipe(select(selectAvailableComponents));
+  }
+
+  getInjectorById(id: number): Observable<StylesInjector> {
+    return this.stylesInjectionService.getInjectorById(this.componentsList$, id);
   }
 
   drop(event: CdkDragDrop<any>): void {
-    this.store.dispatch(remove({componentIndex: event.previousIndex}));
+    this.store.dispatch(remove({selectedId: event.previousContainer.data[event.previousIndex].selectedId}));
   }
 }

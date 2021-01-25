@@ -4,3 +4,6 @@ export const SWAP_COMPONENTS = '[Form Builder] Swap Components';
 export const CHOOSE_COMPONENT = '[General Styles] Choose Component';
 export const CHANGE_STYLES = '[General Styles] Change Styles';
 export const CHANGE_GENERAL_STYLES = '[General Styles] Change General Styles';
+
+export const GET_STYLES = '[Available Components] Get Styles';
+export const GET_STYLES_SUCCESS = '[Available Components] Get Styles Success';

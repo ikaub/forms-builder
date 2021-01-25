@@ -1,9 +1,10 @@
-import {ComponentPortal} from '@angular/cdk/portal';
-import {InjectionToken} from '@angular/core';
+import {InjectionToken, Injector} from '@angular/core';
 
 export interface ComponentInterface {
   component: any;
   styles: Styles;
+  id: number;
+  selectedId?: number;
 }
 
 export interface FormState {
@@ -11,11 +12,6 @@ export interface FormState {
   selectedComponents: ComponentInterface[];
   chosenComponent: number;
   generalStyles: GeneralFormStyles;
-}
-
-export interface StyledComponentPortal {
-  component: ComponentPortal<any> | null;
-  styles: Styles;
 }
 
 export interface Styles {
@@ -28,6 +24,10 @@ export interface Styles {
   'font-size': string;
   'font-weight': string;
   color: string;
+  id: number;
+  display?: string;
+  'justify-content'?: string;
+  'align-items'?: string;
 }
 
 export interface GeneralFormStyles {
@@ -40,3 +40,8 @@ export interface GeneralFormStyles {
 export const STYLES_DATA = new InjectionToken<Styles>('Styles Data');
 
 export const GENERAL_FORM_STYLES = new InjectionToken<GeneralFormStyles>('General Form Styles Data');
+
+export interface StylesInjector {
+  injector: Injector;
+  id: number;
+}

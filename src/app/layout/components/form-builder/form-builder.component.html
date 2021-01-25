@@ -14,11 +14,11 @@
   <div
     cdkDrag
     [ngStyle]="{'margin': generalStyles.margin + '  0'}"
-    (click)="chooseComponent(ndx)"
+    (click)="chooseComponent(selectedComponents[ndx].selectedId)"
     *ngFor="let component of selectedComponents; index as ndx"
   >
     <ng-template
-      [cdkPortalOutlet]="component.component"
+      *ngComponentOutlet="component.component; injector: (getInjectorById(component.selectedId) | ngrxPush).injector"
     ></ng-template>
   </div>
 </div>

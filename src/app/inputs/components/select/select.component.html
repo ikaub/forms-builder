@@ -1,5 +1,5 @@
 <select class="select" [ngStyle]="styles">
   <option>
-    {{styles.placeholderText}}
+    {{styles?.placeholderText || 'Select'}}
   </option>
 </select>

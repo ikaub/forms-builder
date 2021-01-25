@@ -1,0 +1,70 @@
+{
+  "styles": [
+    {
+      "id": 1,
+      "placeholderText": "Text field",
+      "width": "100%",
+      "height": "40px",
+      "font-size": "14px",
+      "font-weight": "normal",
+      "required": false,
+      "color": "#000",
+      "border": "1px solid #000",
+      "border-radius": "15px"
+    },
+    {
+      "id": 2,
+      "placeholderText": "Button",
+      "width": "150px",
+      "height": "40px",
+      "font-size": "14px",
+      "font-weight": "normal",
+      "required": false,
+      "color": "#000",
+      "border": "1px solid #000",
+      "border-radius": "15px",
+      "display": "flex",
+      "justify-content": "center",
+      "align-items": "center"
+    },
+    {
+      "id": 3,
+      "placeholderText": "Textarea",
+      "width": "100%",
+      "height": "130px",
+      "font-size": "14px",
+      "font-weight": "normal",
+      "required": false,
+      "color": "#000",
+      "border": "1px solid #000",
+      "border-radius": "15px"
+    },
+    {
+      "id": 4,
+      "placeholderText": "Checkbox",
+      "width": "120px",
+      "height": "60px",
+      "font-size": "14px",
+      "font-weight": "normal",
+      "required": false,
+      "color": "#000",
+      "border": "none",
+      "border-radius": "0",
+      "display": "flex",
+      "justify-content": "center",
+      "align-items": "center"
+    },
+    {
+      "id": 5,
+      "placeholderText": "Select",
+      "width": "150px",
+      "height": "40px",
+      "font-size": "14px",
+      "font-weight": "normal",
+      "required": false,
+      "color": "#000",
+      "border": "1px solid #000",
+      "border-radius": "15px"
+    }
+  ]
+}

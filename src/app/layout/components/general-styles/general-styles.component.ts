@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {AppState} from '../../../types/app.types';
-import {ComponentInterface} from '../../types/layout.types';
-import {PortalsService} from '../../services/portals.service';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { AppState } from '../../../types/app.types';
+import { ComponentInterface } from '../../types/layout.types';
+import { selectSelectedComponents } from '../../store/form.selectors';
 
 @Component({
   selector: 'app-general-styles',
@@ -13,7 +14,7 @@ import {Observable} from 'rxjs';
 export class GeneralStylesComponent implements OnInit {
   selectedComponents$!: Observable<ComponentInterface[]>;
 
-  constructor(private store: Store<AppState>, private portalsService: PortalsService) {
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit(): void {
@@ -21,6 +22,6 @@ export class GeneralStylesComponent implements OnInit {
   }
 
   getSelectedComponents(): void {
-    this.selectedComponents$ = this.portalsService.getSelectedComponents();
+    this.selectedComponents$ = this.store.pipe(select(selectSelectedComponents));
   }
 }

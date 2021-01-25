@@ -1,83 +1,39 @@
 import { Action, createReducer, on } from '@ngrx/store';
+
 import { InputComponent } from '../../inputs/components/input/input.component';
 import { ButtonComponent } from '../../inputs/components/button/button.component';
 import { TextareaComponent } from '../../inputs/components/textarea/textarea.component';
 import { SelectComponent } from '../../inputs/components/select/select.component';
 import { CheckboxComponent } from '../../inputs/components/checkbox/checkbox.component';
-import { changeGeneralStyles, changeStyles, chooseComponent, drop, remove, swapComponents } from './form.actions';
-import { FormState } from '../types/layout.types';
+import { changeGeneralStyles, changeStyles, chooseComponent, drop, getStylesSuccess, remove, swapComponents } from './form.actions';
+import { FormState, Styles } from '../types/layout.types';
 
 const initialState: FormState = {
   availableComponents: [
     {
       component: {...InputComponent},
-      styles: {
-        placeholderText: 'Text field',
-        width: '100%',
-        height: '40px',
-        'font-size': '14px',
-        'font-weight': 'normal',
-        required: false,
-        color: '#000',
-        border: '1px solid #000',
-        'border-radius': '15px',
-      }
+      styles: {} as Styles,
+      id: 1,
     },
     {
       component: {...ButtonComponent},
-      styles: {
-        placeholderText: 'Button',
-        width: '150px',
-        height: '40px',
-        'font-size': '14px',
-        'font-weight': 'normal',
-        required: false,
-        color: '#000',
-        border: '1px solid #000',
-        'border-radius': '15px',
-      }
+      styles: {} as Styles,
+      id: 2,
     },
     {
       component: {...TextareaComponent},
-      styles: {
-        placeholderText: 'Textarea',
-        width: '100%',
-        height: '130px',
-        'font-size': '14',
-        'font-weight': 'normal',
-        required: false,
-        color: '#000',
-        border: '1px solid #000',
-        'border-radius': '15px',
-      }
+      styles: {} as Styles,
+      id: 3,
     },
     {
       component: {...CheckboxComponent},
-      styles: {
-        placeholderText: 'Checkbox',
-        width: '120px',
-        height: '60px',
-        'font-size': '14px',
-        'font-weight': 'normal',
-        required: false,
-        color: '#000',
-        border: '1px solid #000',
-        'border-radius': '15px',
-      }
+      styles: {} as Styles,
+      id: 4,
     },
     {
       component: {...SelectComponent},
-      styles: {
-        placeholderText: 'Select',
-        width: '150px',
-        height: '40px',
-        'font-size': '14px',
-        'font-weight': 'normal',
-        required: false,
-        color: '#000',
-        border: '1px solid #000',
-        'border-radius': '15px',
-      }
+      styles: {} as Styles,
+      id: 5,
     },
   ],
   selectedComponents: [],
@@ -92,21 +48,26 @@ const initialState: FormState = {
 
 const formReducer = createReducer(
   initialState,
-  on(drop, (state: FormState, {component, index}) => {
-    const newComponents = [...state.selectedComponents];
-    newComponents.splice(index, 0, component);
+  on(drop, (state: FormState, {id}) => {
+    const selectedId = state.selectedComponents[0]?.selectedId !== undefined
+      ? Math.max(...state.selectedComponents.map(component => component.selectedId!)) + 1
+      : 1;
     return {
       ...state,
-      selectedComponents: newComponents,
-      chosenComponent: index,
+      selectedComponents: [
+        ...state.selectedComponents,
+        {
+          ...state.availableComponents.filter(component => component.id === id)[0],
+          selectedId,
+        },
+      ],
+      chosenComponent: selectedId,
     };
   }),
-  on(remove, (state, {componentIndex}) => {
-    const newComponents = [...state.selectedComponents];
-    newComponents.splice(componentIndex, 1);
+  on(remove, (state, {selectedId}) => {
     return {
       ...state,
-      selectedComponents: newComponents,
+      selectedComponents: state.selectedComponents.filter(component => component.selectedId !== selectedId),
     };
   }),
   on(swapComponents, (state, {previousIndex, currentIndex}) => {
@@ -117,19 +78,26 @@ const formReducer = createReducer(
       selectedComponents: newComponents,
     };
   }),
-  on(chooseComponent, (state, {componentIndex}) => ({
+  on(chooseComponent, (state, {selectedId}) => ({
     ...state,
-    chosenComponent: componentIndex,
+    chosenComponent: selectedId,
   })),
   on(changeStyles, (state, {styles}) => ({
     ...state,
-    selectedComponents: state.selectedComponents.map((selected, index) => index === state.chosenComponent
-      ? {component: selected.component, styles}
+    selectedComponents: state.selectedComponents.map((selected) => selected.selectedId === state.chosenComponent
+      ? {...selected, styles: {...selected.styles, ...styles}}
       : selected),
   })),
   on(changeGeneralStyles, (state, {generalStyles}) => ({
     ...state,
     generalStyles,
+  })),
+  on(getStylesSuccess, (state, {styles}) => ({
+    ...state,
+    availableComponents: state.availableComponents.map(component => ({
+      ...component,
+      styles: styles.filter(style => style.id === component.id)[0],
+    })),
   }))
 );
 

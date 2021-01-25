@@ -4,10 +4,10 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { chooseComponent, drop, swapComponents } from '../../store/form.actions';
-import { GeneralFormStyles, StyledComponentPortal } from '../../types/layout.types';
+import { ComponentInterface, GeneralFormStyles, StylesInjector } from '../../types/layout.types';
 import { AppState } from '../../../types/app.types';
 import { selectGeneralStyles, selectSelectedComponents } from '../../store/form.selectors';
-import { PortalsService } from '../../services/portals.service';
+import { StylesInjectionService } from '../../services/styles-injection.service';
 
 @Component({
   selector: 'app-form-builder',
@@ -16,10 +16,10 @@ import { PortalsService } from '../../services/portals.service';
 })
 export class FormBuilderComponent implements OnInit {
 
-  selectedComponents$!: Observable<StyledComponentPortal[]>;
+  selectedComponents$!: Observable<ComponentInterface[]>;
   generalStyles!: GeneralFormStyles;
 
-  constructor(private store: Store<AppState>, private portalsService: PortalsService) {
+  constructor(private store: Store<AppState>, private stylesInjectionService: StylesInjectionService) {
   }
 
   ngOnInit(): void {
@@ -29,25 +29,22 @@ export class FormBuilderComponent implements OnInit {
 
   drop(event: CdkDragDrop<any>): void {
     if (event.previousContainer.id !== event.container.id) {
-      const props = {
-        component: {
-          component: event.previousContainer.data[event.previousIndex].component.component,
-          styles: event.previousContainer.data[event.previousIndex].styles
-        },
-        index: event.currentIndex,
-      };
-      this.store.dispatch(drop(props));
+      this.store.dispatch(drop({id: event.previousContainer.data[event.previousIndex].id}));
     } else {
       this.store.dispatch(swapComponents({previousIndex: event.previousIndex, currentIndex: event.currentIndex}));
     }
   }
 
-  chooseComponent(index: number): void {
-    this.store.dispatch(chooseComponent({componentIndex: index}));
+  getInjectorById(id: number): Observable<StylesInjector> {
+    return this.stylesInjectionService.getInjectorById(this.selectedComponents$, id);
+  }
+
+  chooseComponent(selectedId: number): void {
+    this.store.dispatch(chooseComponent({selectedId}));
   }
 
   getSelectedComponents(): void {
-    this.selectedComponents$ = this.portalsService.getPortalsBySelector(selectSelectedComponents);
+    this.selectedComponents$ = this.store.pipe(select(selectSelectedComponents));
   }
 
   getGeneralStyles(): void {
