@@ -1,11 +1,12 @@
-import {Injectable, Injector} from '@angular/core';
-import {DefaultProjectorFn, MemoizedSelector, select, Store} from '@ngrx/store';
-import {AppState} from '../../types/app.types';
-import {selectSelectedComponents} from '../store/form.selectors';
-import {ComponentPortal} from '@angular/cdk/portal';
-import {ComponentInterface, StyledComponentPortal, STYLES_DATA} from '../types/layout.types';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Injectable, Injector } from '@angular/core';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { DefaultProjectorFn, MemoizedSelector, select, Store } from '@ngrx/store';
+
+import { AppState } from '../../types/app.types';
+import { selectSelectedComponents } from '../store/form.selectors';
+import { ComponentInterface, StyledComponentPortal, STYLES_DATA } from '../types/layout.types';
 
 @Injectable()
 export class PortalsService {

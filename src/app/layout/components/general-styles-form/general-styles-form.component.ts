@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {selectGeneralStyles} from '../../store/form.selectors';
-import {GeneralFormStyles} from '../../types/layout.types';
-import {AppState} from '../../../types/app.types';
-import {Observable} from 'rxjs';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {changeGeneralStyles} from '../../store/form.actions';
+import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+import { selectGeneralStyles } from '../../store/form.selectors';
+import { GeneralFormStyles } from '../../types/layout.types';
+import { AppState } from '../../../types/app.types';
+import { changeGeneralStyles } from '../../store/form.actions';
 
 @Component({
   selector: 'app-general-styles-form',

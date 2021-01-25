@@ -1,11 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ComponentInterface} from '../../types/layout.types';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {select, Store} from '@ngrx/store';
-import {AppState} from '../../../types/app.types';
-import {changeStyles} from '../../store/form.actions';
-import {selectChosenComponent} from '../../store/form.selectors';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
+
+import { ComponentInterface } from '../../types/layout.types';
+import { AppState } from '../../../types/app.types';
+import { changeStyles } from '../../store/form.actions';
+import { selectChosenComponent } from '../../store/form.selectors';
 
 @Component({
   selector: 'app-expandable-panel',

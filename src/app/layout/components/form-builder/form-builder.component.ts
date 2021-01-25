@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {chooseComponent, drop, swapComponents} from '../../store/form.actions';
-import {CdkDragDrop} from '@angular/cdk/drag-drop';
-import {GeneralFormStyles, StyledComponentPortal} from '../../types/layout.types';
-import {AppState} from '../../../types/app.types';
-import {selectGeneralStyles, selectSelectedComponents} from '../../store/form.selectors';
-import {PortalsService} from '../../services/portals.service';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { chooseComponent, drop, swapComponents } from '../../store/form.actions';
+import { GeneralFormStyles, StyledComponentPortal } from '../../types/layout.types';
+import { AppState } from '../../../types/app.types';
+import { selectGeneralStyles, selectSelectedComponents } from '../../store/form.selectors';
+import { PortalsService } from '../../services/portals.service';
 
 @Component({
   selector: 'app-form-builder',

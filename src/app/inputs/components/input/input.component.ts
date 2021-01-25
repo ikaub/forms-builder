@@ -1,5 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {Styles, STYLES_DATA} from '../../../layout/types/layout.types';
+import { Component, Inject, OnInit } from '@angular/core';
+
+import { Styles, STYLES_DATA } from '../../../layout/types/layout.types';
 
 @Component({
   selector: 'app-input',
@@ -8,7 +9,8 @@ import {Styles, STYLES_DATA} from '../../../layout/types/layout.types';
 })
 export class InputComponent implements OnInit {
 
-  constructor(@Inject(STYLES_DATA) public styles: Styles) { }
+  constructor(@Inject(STYLES_DATA) public styles: Styles) {
+  }
 
   ngOnInit(): void {
   }

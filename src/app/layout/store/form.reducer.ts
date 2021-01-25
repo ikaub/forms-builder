@@ -1,11 +1,11 @@
-import {Action, createReducer, on} from '@ngrx/store';
-import {InputComponent} from '../../inputs/components/input/input.component';
-import {ButtonComponent} from '../../inputs/components/button/button.component';
-import {TextareaComponent} from '../../inputs/components/textarea/textarea.component';
-import {SelectComponent} from '../../inputs/components/select/select.component';
-import {CheckboxComponent} from '../../inputs/components/checkbox/checkbox.component';
-import {changeGeneralStyles, changeStyles, chooseComponent, drop, remove, swapComponents} from './form.actions';
-import {FormState} from '../types/layout.types';
+import { Action, createReducer, on } from '@ngrx/store';
+import { InputComponent } from '../../inputs/components/input/input.component';
+import { ButtonComponent } from '../../inputs/components/button/button.component';
+import { TextareaComponent } from '../../inputs/components/textarea/textarea.component';
+import { SelectComponent } from '../../inputs/components/select/select.component';
+import { CheckboxComponent } from '../../inputs/components/checkbox/checkbox.component';
+import { changeGeneralStyles, changeStyles, chooseComponent, drop, remove, swapComponents } from './form.actions';
+import { FormState } from '../types/layout.types';
 
 const initialState: FormState = {
   availableComponents: [

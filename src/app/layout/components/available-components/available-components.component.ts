@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {CdkDragDrop} from '@angular/cdk/drag-drop';
-import {remove} from '../../store/form.actions';
-import {StyledComponentPortal} from '../../types/layout.types';
-import {AppState} from '../../../types/app.types';
-import {selectAvailableComponents} from '../../store/form.selectors';
-import {Observable} from 'rxjs';
-import {PortalsService} from '../../services/portals.service';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Observable } from 'rxjs';
+
+import { StyledComponentPortal } from '../../types/layout.types';
+import { AppState } from '../../../types/app.types';
+import { selectAvailableComponents } from '../../store/form.selectors';
+import { PortalsService } from '../../services/portals.service';
+import { remove } from '../../store/form.actions';
 
 @Component({
   selector: 'app-available-components',

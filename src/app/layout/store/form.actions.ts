@@ -1,4 +1,5 @@
-import {createAction, props} from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
+
 import {
   CHANGE_GENERAL_STYLES,
   CHANGE_STYLES,
@@ -7,7 +8,7 @@ import {
   REMOVE_FROM_FORM_BUILDER,
   SWAP_COMPONENTS
 } from './form.types';
-import {ComponentInterface, GeneralFormStyles, Styles} from '../types/layout.types';
+import { ComponentInterface, GeneralFormStyles, Styles } from '../types/layout.types';
 
 export const drop = createAction(
   DROP_INTO_FORM_BUILDER,
