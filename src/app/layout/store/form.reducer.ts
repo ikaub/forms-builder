@@ -48,6 +48,7 @@ const initialState: FormState = {
   selectedComponents: [],
   chosenComponent: 0,
   generalStyles: {} as GeneralFormStyles,
+  selectedStyles: [],
 };
 
 const formReducer = createReducer(
@@ -56,16 +57,19 @@ const formReducer = createReducer(
     const selectedId = state.selectedComponents[0]?.selectedId !== undefined
       ? Math.max(...state.selectedComponents.map(component => component.selectedId!)) + 1
       : 1;
+    const selectedComponent = state.availableComponents.filter(component => component.id === id)[0];
     return {
       ...state,
       selectedComponents: [
         ...state.selectedComponents,
         {
-          ...state.availableComponents.filter(component => component.id === id)[0],
+          component: selectedComponent.component,
+          id: selectedComponent.id,
           selectedId,
         },
       ],
       chosenComponent: selectedId,
+      selectedStyles: [...state.selectedStyles, {...selectedComponent.styles, selectedId} as Styles],
     };
   }),
   on(remove, (state, {selectedId}) => {
@@ -86,12 +90,16 @@ const formReducer = createReducer(
     ...state,
     chosenComponent: selectedId,
   })),
-  on(changeStyles, (state, {styles}) => ({
-    ...state,
-    selectedComponents: state.selectedComponents.map((selected) => selected.selectedId === state.chosenComponent
-      ? {...selected, styles: {...selected.styles, ...styles}}
-      : selected),
-  })),
+  on(changeStyles, (state, {styles}) => {
+    const oldStyles = state.selectedStyles.find(style => style.selectedId === state.chosenComponent)!;
+    return {
+      ...state,
+      selectedStyles: [
+        ...state.selectedStyles.filter(style => style.selectedId !== oldStyles.selectedId),
+        {...oldStyles, ...styles}
+      ],
+    };
+  }),
   on(changeGeneralStyles, (state, {generalStyles}) => ({
     ...state,
     generalStyles,

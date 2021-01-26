@@ -24,3 +24,8 @@ export const selectGeneralStyles = createSelector(
   formFeatureSelector,
   (state: FormState) => state.generalStyles,
 );
+
+export const selectSelectedStyles = createSelector(
+  formFeatureSelector,
+  (state: FormState) => state.selectedStyles,
+);

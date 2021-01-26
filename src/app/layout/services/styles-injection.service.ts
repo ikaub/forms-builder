@@ -1,17 +1,14 @@
 import { Injectable, Injector } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { AppState } from '../../types/app.types';
 import { Observable } from 'rxjs';
-import { ComponentInterface, STYLES_DATA, StylesInjector } from '../types/layout.types';
-import { selectAvailableComponents } from '../store/form.selectors';
-import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { ComponentInterface, Styles, STYLES_DATA, StylesInjector } from '../types/layout.types';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class StylesInjectionService {
   constructor(private injector: Injector) {
   }
 
-  getInjectors(components$: Observable<ComponentInterface[]>): Observable<StylesInjector[]> {
+  getAvailableInjectors(components$: Observable<ComponentInterface[]>): Observable<StylesInjector[]> {
     return components$.pipe(
       map(components => components.map(
         (component: ComponentInterface) => ({
@@ -19,15 +16,40 @@ export class StylesInjectionService {
             providers: [{provide: STYLES_DATA, useValue: component.styles}],
             parent: this.injector,
           }),
-          id: component.selectedId !== undefined ? component.selectedId : component.id,
+          id: component.id,
         })
         )
       ),
     );
   }
 
-  getInjectorById(components$: Observable<ComponentInterface[]>, id: number): Observable<StylesInjector> {
-    return this.getInjectors(components$).pipe(
+  getSelectedInjectors(components$: Observable<ComponentInterface[]>, styles$: Observable<Styles[]>): Observable<StylesInjector[]> {
+    return components$.pipe(
+      switchMap(components => styles$.pipe(
+        map(styles => components.map(component => {
+          const style = styles.find(s => s.selectedId === component.selectedId)!;
+          return {
+            injector: Injector.create({
+              providers: [{provide: STYLES_DATA, useValue: style}],
+              parent: this.injector,
+            }),
+            id: component.selectedId!,
+          };
+        }))
+      )),
+      /**/
+    );
+  }
+
+  getAvailableInjectorById(components$: Observable<ComponentInterface[]>, id: number): Observable<StylesInjector> {
+    return this.getAvailableInjectors(components$).pipe(
+      map(injectors => injectors.filter(injector => injector.id === id)[0])
+    );
+  }
+
+  getSelectedInjectorById(components$: Observable<ComponentInterface[]>, styles$: Observable<Styles[]>, id: number)
+    : Observable<StylesInjector> {
+    return this.getSelectedInjectors(components$, styles$).pipe(
       map(injectors => injectors.filter(injector => injector.id === id)[0])
     );
   }

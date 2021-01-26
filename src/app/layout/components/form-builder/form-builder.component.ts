@@ -4,9 +4,9 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { chooseComponent, drop, getGeneralStyles, swapComponents } from '../../store/form.actions';
-import { ComponentInterface, GeneralFormStyles, StylesInjector } from '../../types/layout.types';
+import { ComponentInterface, GeneralFormStyles, Styles, StylesInjector } from '../../types/layout.types';
 import { AppState } from '../../../types/app.types';
-import { selectGeneralStyles, selectSelectedComponents } from '../../store/form.selectors';
+import { selectGeneralStyles, selectSelectedComponents, selectSelectedStyles } from '../../store/form.selectors';
 import { StylesInjectionService } from '../../services/styles-injection.service';
 
 @Component({
@@ -17,6 +17,7 @@ import { StylesInjectionService } from '../../services/styles-injection.service'
 export class FormBuilderComponent implements OnInit {
 
   selectedComponents$!: Observable<ComponentInterface[]>;
+  selectedStyles$!: Observable<Styles[]>;
   generalStyles!: GeneralFormStyles;
 
   constructor(private store: Store<AppState>, private stylesInjectionService: StylesInjectionService) {
@@ -25,6 +26,7 @@ export class FormBuilderComponent implements OnInit {
   ngOnInit(): void {
     this.getSelectedComponents();
     this.getGeneralStyles();
+    this.getSelectedStyles();
   }
 
   drop(event: CdkDragDrop<any>): void {
@@ -36,7 +38,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   getInjectorById(id: number): Observable<StylesInjector> {
-    return this.stylesInjectionService.getInjectorById(this.selectedComponents$, id);
+    return this.stylesInjectionService.getSelectedInjectorById(this.selectedComponents$, this.selectedStyles$, id);
   }
 
   chooseComponent(selectedId: number): void {
@@ -52,5 +54,9 @@ export class FormBuilderComponent implements OnInit {
     this.store.pipe(select(selectGeneralStyles)).subscribe(generalStyles => {
       this.generalStyles = generalStyles;
     });
+  }
+
+  getSelectedStyles(): void {
+    this.selectedStyles$ = this.store.pipe(select(selectSelectedStyles));
   }
 }

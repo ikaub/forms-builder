@@ -27,7 +27,7 @@ export class AvailableComponentsComponent implements OnInit {
   }
 
   getInjectorById(id: number): Observable<StylesInjector> {
-    return this.stylesInjectionService.getInjectorById(this.componentsList$, id);
+    return this.stylesInjectionService.getAvailableInjectorById(this.componentsList$, id);
   }
 
   drop(event: CdkDragDrop<any>): void {

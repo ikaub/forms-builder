@@ -1,8 +1,8 @@
-import {InjectionToken, Injector} from '@angular/core';
+import { InjectionToken, Injector } from '@angular/core';
 
 export interface ComponentInterface {
   component: any;
-  styles: Styles;
+  styles?: Styles;
   id: number;
   selectedId?: number;
 }
@@ -12,6 +12,7 @@ export interface FormState {
   selectedComponents: ComponentInterface[];
   chosenComponent: number;
   generalStyles: GeneralFormStyles;
+  selectedStyles: Styles[];
 }
 
 export interface Styles {
@@ -28,6 +29,7 @@ export interface Styles {
   display?: string;
   'justify-content'?: string;
   'align-items'?: string;
+  selectedId: number;
 }
 
 export interface GeneralFormStyles {

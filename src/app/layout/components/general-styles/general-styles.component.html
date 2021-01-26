@@ -3,7 +3,7 @@
 
   <app-expandable-panel
     *ngFor="let component of selectedComponents; index as ndx"
-    [component]="component"
+    [componentId]="component.selectedId"
   ></app-expandable-panel>
 
 </div>
