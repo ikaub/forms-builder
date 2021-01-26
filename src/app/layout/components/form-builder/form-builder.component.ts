@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { chooseComponent, drop, getGeneralStyles, swapComponents } from '../../store/form.actions';
 import { ComponentInterface, GeneralFormStyles, Styles, StylesInjector } from '../../types/layout.types';
@@ -14,11 +14,12 @@ import { StylesInjectionService } from '../../services/styles-injection.service'
   templateUrl: './form-builder.component.html',
   styleUrls: ['./form-builder.component.scss']
 })
-export class FormBuilderComponent implements OnInit {
+export class FormBuilderComponent implements OnInit, OnDestroy {
 
   selectedComponents$!: Observable<ComponentInterface[]>;
   selectedStyles$!: Observable<Styles[]>;
   generalStyles!: GeneralFormStyles;
+  subscriptions: Subscription[] = [];
 
   constructor(private store: Store<AppState>, private stylesInjectionService: StylesInjectionService) {
   }
@@ -27,6 +28,12 @@ export class FormBuilderComponent implements OnInit {
     this.getSelectedComponents();
     this.getGeneralStyles();
     this.getSelectedStyles();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
   }
 
   drop(event: CdkDragDrop<any>): void {
@@ -51,9 +58,9 @@ export class FormBuilderComponent implements OnInit {
 
   getGeneralStyles(): void {
     this.store.dispatch(getGeneralStyles());
-    this.store.pipe(select(selectGeneralStyles)).subscribe(generalStyles => {
+    this.subscriptions.push(this.store.pipe(select(selectGeneralStyles)).subscribe(generalStyles => {
       this.generalStyles = generalStyles;
-    });
+    }));
   }
 
   getSelectedStyles(): void {

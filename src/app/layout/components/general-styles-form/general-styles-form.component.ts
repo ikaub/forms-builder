@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -15,9 +15,10 @@ import { changeGeneralStyles } from '../../store/form.actions';
   styleUrls: ['./general-styles-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GeneralStylesFormComponent implements OnInit {
+export class GeneralStylesFormComponent implements OnInit, OnDestroy {
   generalStyles$!: Observable<GeneralFormStyles>;
   formGroup!: FormGroup;
+  subscriptions: Subscription[] = [];
 
   constructor(private store: Store<AppState>, private formBuilder: FormBuilder) {
   }
@@ -26,6 +27,12 @@ export class GeneralStylesFormComponent implements OnInit {
     this.getGeneralStyles();
     this.initializeForm();
     this.subscribeToChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
   }
 
   initializeForm(): void {
@@ -42,11 +49,11 @@ export class GeneralStylesFormComponent implements OnInit {
   }
 
   subscribeToChanges(): void {
-    this.formGroup.valueChanges.pipe(
+    this.subscriptions.push(this.formGroup.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
     ).subscribe(values => {
       this.store.dispatch(changeGeneralStyles({generalStyles: values}));
-    });
+    }));
   }
 }

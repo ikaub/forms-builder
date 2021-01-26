@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 
 import { Styles } from '../../types/layout.types';
 import { AppState } from '../../../types/app.types';
@@ -13,10 +14,11 @@ import { selectChosenComponent, selectSelectedStyles } from '../../store/form.se
   templateUrl: './expandable-panel.component.html',
   styleUrls: ['./expandable-panel.component.scss'],
 })
-export class ExpandablePanelComponent implements OnInit {
+export class ExpandablePanelComponent implements OnInit, OnDestroy {
   styles!: Styles;
   formGroup!: FormGroup;
-  chosenComponent!: number;
+  chosenComponent$!: Observable<number>;
+  subscriptions: Subscription[] = [];
   @Input() componentId!: number;
 
   constructor(private formBuilder: FormBuilder, private store: Store<AppState>) {
@@ -27,6 +29,12 @@ export class ExpandablePanelComponent implements OnInit {
     this.getCurrentStyles();
     this.initializeForm();
     this.subscribeToChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
   }
 
   initializeForm(): void {
@@ -44,27 +52,25 @@ export class ExpandablePanelComponent implements OnInit {
   }
 
   getChosenComponent(): void {
-    this.store.pipe(select(selectChosenComponent)).subscribe(id => {
-      this.chosenComponent = id;
-    });
+    this.chosenComponent$ = this.store.pipe(select(selectChosenComponent));
   }
 
   subscribeToChanges(): void {
-    this.formGroup.valueChanges.pipe(
+    this.subscriptions.push(this.formGroup.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
     ).subscribe(styles => {
       this.store.dispatch(changeStyles({styles}));
-    });
+    }));
   }
 
   getCurrentStyles(): void {
-    this.store.pipe(
+    this.subscriptions.push(this.store.pipe(
       select(selectSelectedStyles),
       map(styles => styles.filter(style => style.selectedId === this.componentId)[0]),
     ).subscribe(styles => {
       this.styles = styles;
-    });
+    }));
   }
 
   setChosenComponent(selectedId: number): void {
