@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PortalModule } from '@angular/cdk/portal';
 import { StoreModule } from '@ngrx/store';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -25,7 +24,6 @@ import { UnifiedBuilderComponent } from './components/unified-builder/unified-bu
 @NgModule({
   imports: [
     CommonModule,
-    PortalModule,
     InputsModule,
     StoreModule.forFeature('form', reducer),
     EffectsModule.forFeature([FormEffects]),
@@ -47,6 +45,9 @@ import { UnifiedBuilderComponent } from './components/unified-builder/unified-bu
     AvailableComponentsComponent,
     FormBuilderComponent,
     GeneralStylesComponent,
+    ExpandablePanelComponent,
+    GeneralStylesFormComponent,
+    UnifiedBuilderComponent,
   ],
   providers: [
     {provide: STYLES_DATA, useValue: ''},
