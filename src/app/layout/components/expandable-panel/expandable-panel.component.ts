@@ -5,13 +5,13 @@ import { select, Store } from '@ngrx/store';
 
 import { Styles } from '../../types/layout.types';
 import { AppState } from '../../../types/app.types';
-import { changeStyles } from '../../store/form.actions';
+import { changeStyles, chooseComponent } from '../../store/form.actions';
 import { selectChosenComponent, selectSelectedStyles } from '../../store/form.selectors';
 
 @Component({
   selector: 'app-expandable-panel',
   templateUrl: './expandable-panel.component.html',
-  styleUrls: ['./expandable-panel.component.scss']
+  styleUrls: ['./expandable-panel.component.scss'],
 })
 export class ExpandablePanelComponent implements OnInit {
   styles!: Styles;
@@ -67,4 +67,7 @@ export class ExpandablePanelComponent implements OnInit {
     });
   }
 
+  setChosenComponent(selectedId: number): void {
+    this.store.dispatch(chooseComponent({selectedId}));
+  }
 }

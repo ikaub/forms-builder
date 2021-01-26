@@ -1,10 +1,11 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {Styles, STYLES_DATA} from '../../../layout/types/layout.types';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { Styles, STYLES_DATA } from '../../../layout/types/layout.types';
 
 @Component({
   selector: 'app-textarea',
   templateUrl: './textarea.component.html',
-  styleUrls: ['./textarea.component.scss']
+  styleUrls: ['./textarea.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextareaComponent implements OnInit {
 

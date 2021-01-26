@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -12,7 +12,8 @@ import { changeGeneralStyles } from '../../store/form.actions';
 @Component({
   selector: 'app-general-styles-form',
   templateUrl: './general-styles-form.component.html',
-  styleUrls: ['./general-styles-form.component.scss']
+  styleUrls: ['./general-styles-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GeneralStylesFormComponent implements OnInit {
   generalStyles$!: Observable<GeneralFormStyles>;
@@ -42,7 +43,7 @@ export class GeneralStylesFormComponent implements OnInit {
 
   subscribeToChanges(): void {
     this.formGroup.valueChanges.pipe(
-      debounceTime(1500),
+      debounceTime(300),
       distinctUntilChanged(),
     ).subscribe(values => {
       this.store.dispatch(changeGeneralStyles({generalStyles: values}));

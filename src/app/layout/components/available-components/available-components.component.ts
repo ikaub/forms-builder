@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
@@ -13,6 +13,7 @@ import { StylesInjectionService } from '../../services/styles-injection.service'
   selector: 'app-available-components',
   templateUrl: './available-components.component.html',
   styleUrls: ['./available-components.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvailableComponentsComponent implements OnInit {
 

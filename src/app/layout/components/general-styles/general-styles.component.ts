@@ -9,7 +9,7 @@ import { selectSelectedComponents } from '../../store/form.selectors';
 @Component({
   selector: 'app-general-styles',
   templateUrl: './general-styles.component.html',
-  styleUrls: ['./general-styles.component.scss']
+  styleUrls: ['./general-styles.component.scss'],
 })
 export class GeneralStylesComponent implements OnInit {
   selectedComponents$!: Observable<ComponentInterface[]>;
