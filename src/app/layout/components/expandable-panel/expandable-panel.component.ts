@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 
 import { Styles } from '../../types/layout.types';

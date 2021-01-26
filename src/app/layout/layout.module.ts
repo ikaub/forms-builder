@@ -20,6 +20,7 @@ import { GeneralStylesFormComponent } from './components/general-styles-form/gen
 import { StylesService } from './services/styles.service';
 import { FormEffects } from './store/form.effects';
 import { StylesInjectionService } from './services/styles-injection.service';
+import { UnifiedBuilderComponent } from './components/unified-builder/unified-builder.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { StylesInjectionService } from './services/styles-injection.service';
     GeneralStylesComponent,
     ExpandablePanelComponent,
     GeneralStylesFormComponent,
+    UnifiedBuilderComponent,
   ],
   exports: [
     AvailableComponentsComponent,

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "json-server info.json && ng serve",
+    "start": "hai-server --watch info.json --auth auth.json --port 3000 && ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
