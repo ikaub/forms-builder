@@ -1,35 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { Token, User } from '../types/auth.types';
-import { AppState } from '../../types/app.types';
-import { selectToken } from '../store/auth.selectors';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient, private store: Store<AppState>) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
-  login({email, password}: User): Observable<Token> {
-    return this.http.post<Token>(
+  login({email, password}: User): void {
+    const token: Observable<Token> = this.http.post<Token>(
       `${environment.apiUrl}/login`,
       {email, password},
       {headers: new HttpHeaders({'Content-type': 'application/json'})}
     );
+    token.subscribe(jwtToken => {
+      localStorage.setItem('token', jwtToken.access_token);
+      this.router.navigate(['/form-builder']);
+    });
   }
 
-  isAuthorized(): Observable<boolean> {
-    return this.store.pipe(
-      select(selectToken),
-      map(token => !!token.length)
-    );
+  isAuthorized(): boolean {
+    return !!this.getToken()?.length;
   }
 
-  getToken(): Observable<string> {
-    return this.store.pipe(select(selectToken));
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 }
