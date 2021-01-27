@@ -20,6 +20,7 @@ export class FormBuilderComponent implements OnInit, OnDestroy {
   selectedStyles$!: Observable<Styles[]>;
   generalStyles!: GeneralFormStyles;
   subscriptions: Subscription[] = [];
+  ComponentInterface!: ComponentInterface;
 
   constructor(private store: Store<AppState>, private stylesInjectionService: StylesInjectionService) {
   }

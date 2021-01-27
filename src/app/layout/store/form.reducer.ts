@@ -76,6 +76,7 @@ const formReducer = createReducer(
     return {
       ...state,
       selectedComponents: state.selectedComponents.filter(component => component.selectedId !== selectedId),
+      selectedStyles: state.selectedStyles.filter(style => style.selectedId !== selectedId),
     };
   }),
   on(swapComponents, (state, {previousIndex, currentIndex}) => {

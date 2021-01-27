@@ -1,8 +1,8 @@
-<div class="general-styles" *ngrxLet="selectedComponents$ as selectedComponents">
+<div class="general-styles">
   <app-general-styles-form></app-general-styles-form>
 
   <app-expandable-panel
-    *ngFor="let component of selectedComponents; index as ndx"
+    *ngFor="let component of selectedComponents$ | ngrxPush"
     [componentId]="component.selectedId"
   ></app-expandable-panel>
 

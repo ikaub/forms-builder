@@ -15,7 +15,7 @@
     cdkDrag
     [ngStyle]="{'margin': generalStyles.margin + '  0'}"
     (click)="chooseComponent(selectedComponents[ndx].selectedId)"
-    *ngFor="let component of selectedComponents; index as ndx"
+    *ngFor="let component of selectedComponents$ | ngrxPush; index as ndx"
   >
     <ng-template
       *ngComponentOutlet="component.component; injector: (getInjectorById(component.selectedId) | ngrxPush).injector"

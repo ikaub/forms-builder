@@ -16,7 +16,7 @@ import { changeGeneralStyles } from '../../store/form.actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GeneralStylesFormComponent implements OnInit, OnDestroy {
-  generalStyles$!: Observable<GeneralFormStyles>;
+  generalStyles!: GeneralFormStyles;
   formGroup!: FormGroup;
   subscriptions: Subscription[] = [];
 
@@ -37,15 +37,17 @@ export class GeneralStylesFormComponent implements OnInit, OnDestroy {
 
   initializeForm(): void {
     this.formGroup = this.formBuilder.group({
-      verticalPadding: new FormControl('10px'),
-      horizontalPadding: new FormControl('10px'),
-      margin: new FormControl('10px'),
-      color: new FormControl('#ffffff')
+      verticalPadding: new FormControl(this.generalStyles.verticalPadding),
+      horizontalPadding: new FormControl(this.generalStyles.horizontalPadding),
+      margin: new FormControl(this.generalStyles.margin),
+      color: new FormControl(this.generalStyles.color)
     });
   }
 
   getGeneralStyles(): void {
-    this.generalStyles$ = this.store.pipe(select(selectGeneralStyles));
+    this.subscriptions.push(this.store.pipe(select(selectGeneralStyles)).subscribe(generalStyles => {
+      this.generalStyles = generalStyles;
+    }));
   }
 
   subscribeToChanges(): void {
