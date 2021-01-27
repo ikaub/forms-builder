@@ -4,10 +4,10 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
-import { Styles } from '../../types/layout.types';
-import { AppState } from '../../../types/app.types';
-import { changeStyles, chooseComponent } from '../../store/form.actions';
-import { selectChosenComponent, selectSelectedStyles } from '../../store/form.selectors';
+import { Styles } from 'src/app/layout/types/layout.types';
+import { AppState } from 'src/app/types/app.types';
+import { changeStyles, chooseComponent } from 'src/app/layout/store/form.actions';
+import { selectChosenComponent, selectSelectedStyles } from 'src/app/layout/store/form.selectors';
 
 @Component({
   selector: 'app-expandable-panel',

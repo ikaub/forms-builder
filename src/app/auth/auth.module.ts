@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AuthService } from './services/auth.service';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { AuthComponent } from './components/auth/auth.component';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { AuthInterceptor } from 'src/app/auth/interceptors/auth.interceptor';
+import { AuthComponent } from 'src/app/auth/components/auth/auth.component';
+import { AuthGuard } from 'src/app/auth/guards/auth.guard';
 
 @NgModule({
   imports: [

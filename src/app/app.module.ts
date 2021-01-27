@@ -6,10 +6,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 
-import { AppComponent } from './app.component';
-import { LayoutModule } from './layout/layout.module';
-import { AppRoutingModule } from './app-routing.module';
-import { AuthModule } from './auth/auth.module';
+import { AppComponent } from 'src/app/app.component';
+import { LayoutModule } from 'src/app/layout/layout.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { AuthModule } from 'src/app/auth/auth.module';
 
 @NgModule({
   declarations: [

@@ -3,11 +3,11 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
-import { chooseComponent, drop, getGeneralStyles, swapComponents } from '../../store/form.actions';
-import { ComponentInterface, GeneralFormStyles, Styles, StylesInjector } from '../../types/layout.types';
-import { AppState } from '../../../types/app.types';
-import { selectGeneralStyles, selectSelectedComponents, selectSelectedStyles } from '../../store/form.selectors';
-import { StylesInjectionService } from '../../services/styles-injection.service';
+import { chooseComponent, drop, getGeneralStyles, swapComponents } from 'src/app/layout/store/form.actions';
+import { ComponentInterface, GeneralFormStyles, Styles, StylesInjector } from 'src/app/layout/types/layout.types';
+import { AppState } from 'src/app/types/app.types';
+import { selectGeneralStyles, selectSelectedComponents, selectSelectedStyles } from 'src/app/layout/store/form.selectors';
+import { StylesInjectionService } from 'src/app/layout/services/styles-injection.service';
 
 @Component({
   selector: 'app-form-builder',

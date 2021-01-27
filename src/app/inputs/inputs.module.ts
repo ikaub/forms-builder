@@ -4,11 +4,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-import { InputComponent } from './components/input/input.component';
-import { ButtonComponent } from './components/button/button.component';
-import { CheckboxComponent } from './components/checkbox/checkbox.component';
-import { SelectComponent } from './components/select/select.component';
-import { TextareaComponent } from './components/textarea/textarea.component';
+import { InputComponent } from 'src/app/inputs/components/input/input.component';
+import { ButtonComponent } from 'src/app/inputs/components/button/button.component';
+import { CheckboxComponent } from 'src/app/inputs/components/checkbox/checkbox.component';
+import { SelectComponent } from 'src/app/inputs/components/select/select.component';
+import { TextareaComponent } from 'src/app/inputs/components/textarea/textarea.component';
 
 @NgModule({
   imports: [

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-
-import { StylesService } from '../services/styles.service';
-import { GET_GENERAL_STYLES, GET_STYLES } from './form.types';
 import { map, mergeMap } from 'rxjs/operators';
-import { getGeneralStylesSuccess, getStylesSuccess } from './form.actions';
+
+import { StylesService } from 'src/app/layout/services/styles.service';
+import { GET_GENERAL_STYLES, GET_STYLES } from 'src/app/layout/store/form.types';
+import { getGeneralStylesSuccess, getStylesSuccess } from 'src/app/layout/store/form.actions';
 
 @Injectable()
 export class FormEffects {

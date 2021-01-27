@@ -4,10 +4,10 @@ import { Observable, Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { selectGeneralStyles } from '../../store/form.selectors';
-import { GeneralFormStyles } from '../../types/layout.types';
-import { AppState } from '../../../types/app.types';
-import { changeGeneralStyles } from '../../store/form.actions';
+import { selectGeneralStyles } from 'src/app/layout/store/form.selectors';
+import { GeneralFormStyles } from 'src/app/layout/types/layout.types';
+import { AppState } from 'src/app/types/app.types';
+import { changeGeneralStyles } from 'src/app/layout/store/form.actions';
 
 @Component({
   selector: 'app-general-styles-form',

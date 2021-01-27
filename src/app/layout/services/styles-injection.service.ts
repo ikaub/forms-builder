@@ -1,7 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ComponentInterface, Styles, STYLES_DATA, StylesInjector } from '../types/layout.types';
 import { map, switchMap } from 'rxjs/operators';
+
+import { ComponentInterface, Styles, STYLES_DATA, StylesInjector } from 'src/app/layout/types/layout.types';
 
 @Injectable()
 export class StylesInjectionService {

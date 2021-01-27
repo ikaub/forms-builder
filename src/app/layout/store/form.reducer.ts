@@ -1,10 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { InputComponent } from '../../inputs/components/input/input.component';
-import { ButtonComponent } from '../../inputs/components/button/button.component';
-import { TextareaComponent } from '../../inputs/components/textarea/textarea.component';
-import { SelectComponent } from '../../inputs/components/select/select.component';
-import { CheckboxComponent } from '../../inputs/components/checkbox/checkbox.component';
+import { InputComponent } from 'src/app/inputs/components/input/input.component';
+import { ButtonComponent } from 'src/app/inputs/components/button/button.component';
+import { TextareaComponent } from 'src/app/inputs/components/textarea/textarea.component';
+import { SelectComponent } from 'src/app/inputs/components/select/select.component';
+import { CheckboxComponent } from 'src/app/inputs/components/checkbox/checkbox.component';
 import {
   changeGeneralStyles,
   changeStyles,
@@ -14,8 +14,8 @@ import {
   getStylesSuccess,
   remove,
   swapComponents
-} from './form.actions';
-import { FormState, GeneralFormStyles, Styles } from '../types/layout.types';
+} from 'src/app/layout/store/form.actions';
+import { FormState, GeneralFormStyles, Styles } from 'src/app/layout/types/layout.types';
 
 const initialState: FormState = {
   availableComponents: [

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { environment } from '../../../environments/environment';
-import { Token, User } from '../types/auth.types';
-import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { Token, User } from 'src/app/auth/types/auth.types';
 
 @Injectable()
 export class AuthService {

@@ -3,11 +3,11 @@ import { select, Store } from '@ngrx/store';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
 
-import { ComponentInterface, StylesInjector } from '../../types/layout.types';
-import { AppState } from '../../../types/app.types';
-import { selectAvailableComponents } from '../../store/form.selectors';
-import { getStyles, remove } from '../../store/form.actions';
-import { StylesInjectionService } from '../../services/styles-injection.service';
+import { ComponentInterface, StylesInjector } from 'src/app/layout/types/layout.types';
+import { AppState } from 'src/app/types/app.types';
+import { selectAvailableComponents } from 'src/app/layout/store/form.selectors';
+import { getStyles, remove } from 'src/app/layout/store/form.actions';
+import { StylesInjectionService } from 'src/app/layout/services/styles-injection.service';
 
 @Component({
   selector: 'app-available-components',
