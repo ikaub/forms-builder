@@ -6,18 +6,20 @@
       *ngIf="errorMessage.length"
       [errorMessage]="errorMessage"
     ></app-error-message>
-    <app-validated-input
-      [type]="'email'"
-      [label]="'Email'"
-      [required]="true"
-      formControlName="email"
-    ></app-validated-input>
-    <app-validated-input
-      [type]="'password'"
-      [label]="'Password'"
-      [required]="true"
-      formControlName="password"
-    ></app-validated-input>
+    <div>
+      <app-validated-input
+        [type]="'email'"
+        [label]="'Email'"
+        [required]="true"
+        formControlName="email"
+      ></app-validated-input>
+      <app-validated-input
+        [type]="'password'"
+        [label]="'Password'"
+        [required]="true"
+        formControlName="password"
+      ></app-validated-input>
+    </div>
     <button type="submit">Sign in</button>
   </form>
 </div>
