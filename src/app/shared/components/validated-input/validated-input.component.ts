@@ -21,7 +21,9 @@ export class ValidatedInputComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
     const control = this.controlDir.control;
-    const validators: ValidatorFn[] = [];
+    const validators: ValidatorFn[] = [
+      Validators.min(5),
+    ];
     if (this.required) {
       validators.push(Validators.required);
     }
