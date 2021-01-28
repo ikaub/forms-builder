@@ -23,9 +23,13 @@ export class GeneralStylesFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getGeneralStyles();
-    this.initializeForm();
-    this.subscribeToChanges();
+    this.subscriptions.push(this.store.pipe(select(selectGeneralStyles)).subscribe(generalStyles => {
+      this.generalStyles = generalStyles;
+      if (this.generalStyles) {
+        this.initializeForm();
+        this.subscribeToChanges();
+      }
+    }));
   }
 
   ngOnDestroy(): void {
@@ -41,15 +45,6 @@ export class GeneralStylesFormComponent implements OnInit, OnDestroy {
       margin: new FormControl(this.generalStyles.margin),
       color: new FormControl(this.generalStyles.color)
     });
-  }
-
-  getGeneralStyles(): void {
-    this.subscriptions.push(this.store.pipe(select(selectGeneralStyles)).subscribe(generalStyles => {
-      this.generalStyles = generalStyles;
-      if (this.generalStyles) {
-        this.initializeForm();
-      }
-    }));
   }
 
   subscribeToChanges(): void {
