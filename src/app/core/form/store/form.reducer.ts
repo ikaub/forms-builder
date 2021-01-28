@@ -14,8 +14,8 @@ import {
   getStylesSuccess,
   remove,
   swapComponents
-} from 'src/app/layout/store/form.actions';
-import { FormState, GeneralFormStyles, Styles } from 'src/app/layout/types/layout.types';
+} from 'src/app/core/form/store/form.actions';
+import { FormState, GeneralFormStyles, Styles } from 'src/app/core/form/store';
 
 const initialState: FormState = {
   availableComponents: [
@@ -51,7 +51,7 @@ const initialState: FormState = {
   selectedStyles: [],
 };
 
-const formReducer = createReducer(
+const formReducer = createReducer<FormState, Action>(
   initialState,
   on(drop, (state: FormState, {id}) => {
     const selectedId = state.selectedComponents[0]?.selectedId !== undefined
@@ -118,4 +118,4 @@ const formReducer = createReducer(
   }))
 );
 
-export const reducer = (state: FormState, action: Action) => formReducer(state, action);
+export const reducer = (state: FormState, action: Action): FormState => formReducer(state, action);

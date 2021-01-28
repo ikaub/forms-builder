@@ -30,4 +30,8 @@ export class AuthService {
   getToken(): string | null {
     return localStorage.getItem('token');
   }
+
+  deleteExpiredToken(): void {
+    localStorage.removeItem('token');
+  }
 }

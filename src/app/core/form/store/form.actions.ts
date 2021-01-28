@@ -7,8 +7,8 @@ import {
   DROP_INTO_FORM_BUILDER, GET_GENERAL_STYLES, GET_GENERAL_STYLES_SUCCESS, GET_STYLES, GET_STYLES_SUCCESS,
   REMOVE_FROM_FORM_BUILDER,
   SWAP_COMPONENTS
-} from './form.types';
-import { ComponentInterface, GeneralFormStyles, Styles } from '../types/layout.types';
+} from 'src/app/core/form/store/form.types';
+import { GeneralFormStyles, Styles } from 'src/app/core/form/store';
 
 export const drop = createAction(
   DROP_INTO_FORM_BUILDER,

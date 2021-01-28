@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { AppState } from 'src/app/types/app.types';
-import { ComponentInterface } from 'src/app/layout/types/layout.types';
-import { selectSelectedComponents } from 'src/app/layout/store/form.selectors';
+import { AppState } from 'src/app/core/reducers/core.reducer';
+import { ComponentInterface, selectSelectedComponents } from 'src/app/core/form/store';
 
 @Component({
   selector: 'app-general-styles',

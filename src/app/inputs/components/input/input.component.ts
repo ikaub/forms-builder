@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 
-import { Styles, STYLES_DATA } from 'src/app/layout/types/layout.types';
+import { STYLES_DATA } from 'src/app/layout/types/layout.types';
+import { Styles } from 'src/app/core/form/store';
 
 @Component({
   selector: 'app-input',

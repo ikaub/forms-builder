@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, mergeMap } from 'rxjs/operators';
 
 import { StylesService } from 'src/app/layout/services/styles.service';
-import { GET_GENERAL_STYLES, GET_STYLES } from 'src/app/layout/store/form.types';
-import { getGeneralStylesSuccess, getStylesSuccess } from 'src/app/layout/store/form.actions';
+import { GET_GENERAL_STYLES, GET_STYLES } from 'src/app/core/form/store/form.types';
+import { getGeneralStylesSuccess, getStylesSuccess } from 'src/app/core/form/store';
 
 @Injectable()
 export class FormEffects {

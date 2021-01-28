@@ -4,10 +4,9 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
-import { Styles } from 'src/app/layout/types/layout.types';
-import { AppState } from 'src/app/types/app.types';
-import { changeStyles, chooseComponent } from 'src/app/layout/store/form.actions';
-import { selectChosenComponent, selectSelectedStyles } from 'src/app/layout/store/form.selectors';
+import { AppState } from 'src/app/core/reducers/core.reducer';
+import { changeStyles, chooseComponent, Styles } from 'src/app/core/form/store';
+import { selectChosenComponent, selectSelectedStyles } from 'src/app/core/form/store';
 
 @Component({
   selector: 'app-expandable-panel',
@@ -67,7 +66,7 @@ export class ExpandablePanelComponent implements OnInit, OnDestroy {
   getCurrentStyles(): void {
     this.subscriptions.push(this.store.pipe(
       select(selectSelectedStyles),
-      map(styles => styles.filter(style => style.selectedId === this.componentId)[0]),
+      map(styles => styles.filter((style: Styles) => style.selectedId === this.componentId)[0]),
     ).subscribe(styles => {
       this.styles = styles;
     }));

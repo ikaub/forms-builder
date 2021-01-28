@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { selectGeneralStyles } from 'src/app/layout/store/form.selectors';
-import { GeneralFormStyles } from 'src/app/layout/types/layout.types';
-import { AppState } from 'src/app/types/app.types';
-import { changeGeneralStyles } from 'src/app/layout/store/form.actions';
+import { GeneralFormStyles, selectGeneralStyles } from 'src/app/core/form/store';
+import { AppState } from 'src/app/core/reducers/core.reducer';
+import { changeGeneralStyles } from 'src/app/core/form/store';
 
 @Component({
   selector: 'app-general-styles-form',

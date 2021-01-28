@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { FormState } from 'src/app/layout/types/layout.types';
-import { AppState } from 'src/app/types/app.types';
+import { AppState } from 'src/app/core/reducers/core.reducer';
+import { FormState } from 'src/app/core/form/store';
 
 export const formFeatureSelector = createFeatureSelector<AppState, FormState>('form');
 

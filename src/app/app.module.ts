@@ -10,6 +10,7 @@ import { AppComponent } from 'src/app/app.component';
 import { LayoutModule } from 'src/app/layout/layout.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AuthModule } from 'src/app/auth/auth.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AuthModule } from 'src/app/auth/auth.module';
     LayoutModule,
     AppRoutingModule,
     AuthModule,
+    CoreModule
   ],
   providers: [],
   exports: [],

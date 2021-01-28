@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { GeneralFormStyles, Styles } from 'src/app/layout/types/layout.types';
 import { environment } from 'src/environments/environment';
+import { GeneralFormStyles, Styles } from 'src/app/core/form/store';
 
 @Injectable()
 export class StylesService {
