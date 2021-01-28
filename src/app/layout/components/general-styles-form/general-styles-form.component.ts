@@ -46,6 +46,9 @@ export class GeneralStylesFormComponent implements OnInit, OnDestroy {
   getGeneralStyles(): void {
     this.subscriptions.push(this.store.pipe(select(selectGeneralStyles)).subscribe(generalStyles => {
       this.generalStyles = generalStyles;
+      if (this.generalStyles) {
+        this.initializeForm();
+      }
     }));
   }
 
