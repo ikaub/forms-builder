@@ -1,0 +1,11 @@
+<label class="form-group">
+  <input
+    (blur)="onTouched()"
+    [type]="type"
+    [required]="required"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="writeValue($event.target.value)"
+  >
+  <span [ngClass]="value ? 'active': ''">{{label}}</span>
+</label>

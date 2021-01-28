@@ -7,11 +7,13 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { AuthInterceptor } from 'src/app/auth/interceptors/auth.interceptor';
 import { AuthComponent } from 'src/app/auth/components/auth/auth.component';
 import { AuthGuard } from 'src/app/auth/guards/auth.guard';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
   providers: [
     AuthService,

@@ -1,13 +1,17 @@
 <div class="auth-page">
   <form class="auth-form" [formGroup]="formGroup" (ngSubmit)="onAuth()">
-    <label class="auth-form-group">
-      <input formControlName="email" type="email" required/>
-      <span [ngClass]="formGroup.value.email ? 'active' : ''">Email</span>
-    </label>
-    <label class="auth-form-group">
-      <input formControlName="password" type="password" required/>
-      <span [class.active]="formGroup.value.password ? 'active' : ''">Password</span>
-    </label>
+    <app-validated-input
+      [type]="'email'"
+      [label]="'Email'"
+      [required]="true"
+      formControlName="email"
+    ></app-validated-input>
+    <app-validated-input
+      [type]="'password'"
+      [label]="'Password'"
+      [required]="true"
+      formControlName="password"
+    ></app-validated-input>
     <button type="submit">Sign in</button>
   </form>
 </div>

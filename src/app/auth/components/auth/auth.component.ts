@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { AuthService } from 'src/app/auth/services/auth.service';
 
@@ -24,8 +24,8 @@ export class AuthComponent implements OnInit {
 
   initializeForm(): void {
     this.formGroup = this.formBuilder.group({
-      email: new FormControl('', [Validators.email, Validators.required]),
-      password: new FormControl('', [Validators.required, Validators.min(4)]),
+      email: '',
+      password: '',
     });
   }
 

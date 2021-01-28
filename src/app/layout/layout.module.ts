@@ -18,6 +18,7 @@ import { GeneralStylesFormComponent } from 'src/app/layout/components/general-st
 import { StylesService } from 'src/app/layout/services/styles.service';
 import { StylesInjectionService } from 'src/app/layout/services/styles-injection.service';
 import { UnifiedBuilderComponent } from 'src/app/layout/components/unified-builder/unified-builder.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { UnifiedBuilderComponent } from 'src/app/layout/components/unified-build
     MatExpansionModule,
     ReactiveComponentModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule,
   ],
   declarations: [
     AvailableComponentsComponent,

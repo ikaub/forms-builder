@@ -1,0 +1,31 @@
+.form-group {
+  display: flex;
+  flex-direction: column-reverse;
+  margin: 50px 0;
+  position: relative;
+
+  span {
+    position: absolute;
+    top: -4px;
+    left: 0;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+
+    &.active {
+      top: -20px;
+      font-size: .8rem;
+    }
+  }
+
+  input {
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 1rem;
+    padding: 5px 0;
+
+    &:focus + span {
+      top: -20px;
+      font-size: .8rem;
+    }
+  }
+}

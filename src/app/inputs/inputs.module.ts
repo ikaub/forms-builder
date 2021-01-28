@@ -9,6 +9,7 @@ import { ButtonComponent } from 'src/app/inputs/components/button/button.compone
 import { CheckboxComponent } from 'src/app/inputs/components/checkbox/checkbox.component';
 import { SelectComponent } from 'src/app/inputs/components/select/select.component';
 import { TextareaComponent } from 'src/app/inputs/components/textarea/textarea.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { TextareaComponent } from 'src/app/inputs/components/textarea/textarea.c
     MatInputModule,
     MatCheckboxModule,
     DragDropModule,
+    SharedModule,
   ],
   declarations: [
     InputComponent,

@@ -11,6 +11,7 @@ import { LayoutModule } from 'src/app/layout/layout.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AuthModule } from 'src/app/auth/auth.module';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CoreModule } from './core/core.module';
     LayoutModule,
     AppRoutingModule,
     AuthModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
   providers: [],
   exports: [],
